@@ -27,7 +27,9 @@ namespace SocialOpinionAPI.Core.Labs.FilteredStream.Logic
 
         public FilteredStreamClient(string consumerKey, string ConsumerSecret)
         {
-            //GetBearerToken();
+            _ConsumerKey = consumerKey;
+            _ConsumerSecret = ConsumerSecret;
+            GetBearerToken();
         }
 
         private void GetBearerToken()
@@ -77,8 +79,6 @@ namespace SocialOpinionAPI.Core.Labs.FilteredStream.Logic
                 {
                     Console.WriteLine("Entered LabsStartFilteredStream at:" + DateTime.Now.ToString("F"));
                     int recordsFetch = 0;
-
-                    GetBearerToken();
 
                     WebRequest request = WebRequest.Create(address);
                     request.Headers.Add("Authorization", "Bearer " + _BearerToken);
