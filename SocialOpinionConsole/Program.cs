@@ -1,5 +1,7 @@
 ﻿using SocialOpinionAPI.Core.Labs.FilteredStream.Logic;
+using SocialOpinionAPI.Labs;
 using System;
+using System.Collections.Generic;
 
 namespace SocialOpinionConsole
 {
@@ -15,6 +17,25 @@ namespace SocialOpinionConsole
 
         static void Main(string[] args)
         {
+            string _ConsumerKey = "";
+            string _ConsumerSecret = "";
+            string _AccessToken = "";
+            string _AccessTokenSecret = "";
+            
+            MetricsClient metricsClient = new MetricsClient(new SocialOpinionAPI.Core.OAuthInfo
+            {
+                AccessSecret = _AccessTokenSecret,
+                AccessToken = _AccessToken,
+                ConsumerSecret = _ConsumerSecret,
+                ConsumerKey = _ConsumerKey
+            });
+
+            List<string> ids = new List<string>();
+            ids.Add("1256813051623411712");
+
+            metricsClient.GetTweetMetrics(ids);
+            
+
             FilteredStreamClient filteredStreamClient =
                 new FilteredStreamClient("", "");
 
