@@ -1,10 +1,16 @@
 # SocialOpinion-Public
 APIs written in C# that connect to the TwitterAPI
 
-* FilteredStreamClient
+* Filtered Stream Client
 [![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  [![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
 
-* MetricsClient
+* Metrics Client
+[![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  [![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
+
+* Recent Search Client
+[![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  [![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
+
+* Tweets and Users Client
 [![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  [![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
 
 * PremiumSearchClient
