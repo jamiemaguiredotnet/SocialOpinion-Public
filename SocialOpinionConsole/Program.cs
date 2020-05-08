@@ -1,7 +1,9 @@
-﻿using SocialOpinionAPI.Core.Labs.FilteredStream.Logic;
-using SocialOpinionAPI.Labs;
+﻿using SocialOpinionAPI.Labs;
+using SocialOpinionAPI.Models.TweetMetrics;
+using SocialOpinionAPI.Services.TweetMetrics;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace SocialOpinionConsole
 {
@@ -17,31 +19,29 @@ namespace SocialOpinionConsole
 
         static void Main(string[] args)
         {
-            string _ConsumerKey = "";
-            string _ConsumerSecret = "";
-            string _AccessToken = "";
-            string _AccessTokenSecret = "";
-            
-            MetricsClient metricsClient = new MetricsClient(new SocialOpinionAPI.Core.OAuthInfo
-            {
-                AccessSecret = _AccessTokenSecret,
-                AccessToken = _AccessToken,
-                ConsumerSecret = _ConsumerSecret,
-                ConsumerKey = _ConsumerKey
-            });
+            string _ConsumerKey = ConfigurationManager.AppSettings.Get("ConsumerKey");
+            string _ConsumerSecret = ConfigurationManager.AppSettings.Get("ConsumerSecret");
+            string _AccessToken = ConfigurationManager.AppSettings.Get("AccessToken");
+            string _AccessTokenSecret = ConfigurationManager.AppSettings.Get("AccessTokenSecret");
 
+
+            // testing Metrics API with strongly typed objects and new Service class
+            // that encapsulates low-level mapping from the Labs API
             List<string> ids = new List<string>();
-            ids.Add("1256813051623411712");
+            ids.Add("1258626243987230722");
+            TweetMetricsService service = new TweetMetricsService(new SocialOpinionAPI.Core.OAuthInfo
+                {
+                    AccessSecret = _AccessTokenSecret,
+                    AccessToken = _AccessToken,
+                    ConsumerSecret = _ConsumerSecret,
+                    ConsumerKey = _ConsumerKey
+                });
+            List<TweetMetricModel> metricModels = service.GetTweetMetrics(ids);
 
-            metricsClient.GetTweetMetrics(ids);
-            
-
-            FilteredStreamClient filteredStreamClient =
-                new FilteredStreamClient("", "");
-
+            // testing Filtered Stream Client
+            FilteredStreamClient filteredStreamClient = new FilteredStreamClient("", "");
             filteredStreamClient.FilteredStreamDataReceivedEvent += FilteredStreamClient_FilteredStreamDataReceivedEvent;
-            filteredStreamClient
-                .StartStream("https://api.twitter.com/labs/1/tweets/stream/filter?tweet.format=detailed", 10, 5);
+            filteredStreamClient.StartStream("https://api.twitter.com/labs/1/tweets/stream/filter?tweet.format=detailed", 10, 5);
         }
     }
 }

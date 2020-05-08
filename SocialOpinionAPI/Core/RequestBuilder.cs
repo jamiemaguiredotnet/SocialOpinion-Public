@@ -38,7 +38,6 @@ namespace SocialOpinionAPI.Core
             var timespan = GetTimestamp();
             var nonce = CreateNonce();
 
-            //nonce = nonce + "7667E1117667E1117667E111";
             var parameters = new Dictionary<string, string>(customParameters);
             AddOAuthParameters(parameters, timespan, nonce);
 

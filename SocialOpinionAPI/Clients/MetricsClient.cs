@@ -1,4 +1,7 @@
-﻿using SocialOpinionAPI.Core;
+﻿using Newtonsoft.Json;
+using SocialOpinionAPI.Core;
+using SocialOpinionAPI.DTO.TweetMetrics;
+using SocialOpinionAPI.Models.TweetMetrics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +10,7 @@ namespace SocialOpinionAPI.Labs
 {
     public class MetricsClient
     {
+        private string _privateEndpoint = "https://api.twitter.com/labs/1/tweets/metrics/private";
         private OAuthInfo _oAuthInfo;
 
         public MetricsClient(OAuthInfo oAuthInfo)
@@ -16,9 +20,7 @@ namespace SocialOpinionAPI.Labs
 
         public string GetTweetMetrics(List<string> tweetIds)
         {
-            //e.g. https://api.twitter.com/labs/1/tweets/metrics/private?ids=1167028477675130880
-
-            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", "https://api.twitter.com/labs/1/tweets/metrics/private");
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _privateEndpoint);
 
             rb.AddParameter("ids", string.Join(",", tweetIds));
 
@@ -26,5 +28,6 @@ namespace SocialOpinionAPI.Labs
 
             return result;
         }
+
     }
 }
