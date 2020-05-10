@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Web;
 
-namespace SocialOpinionAPI.Labs
+namespace SocialOpinionAPI.Clients
 {
     public class FilteredStreamClient
     {

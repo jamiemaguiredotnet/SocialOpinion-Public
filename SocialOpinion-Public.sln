@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialOpinionConsole", "Soc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialOpinionAPI", "SocialOpinionAPI\SocialOpinionAPI.csproj", "{C9508F24-0FD6-48CC-8F85-CD1725EA0D2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialOpinion.Tests", "SocialOpinion.Tests\SocialOpinion.Tests.csproj", "{7ACF6352-C794-43AB-885D-82354327A828}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C9508F24-0FD6-48CC-8F85-CD1725EA0D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9508F24-0FD6-48CC-8F85-CD1725EA0D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9508F24-0FD6-48CC-8F85-CD1725EA0D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ACF6352-C794-43AB-885D-82354327A828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ACF6352-C794-43AB-885D-82354327A828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ACF6352-C794-43AB-885D-82354327A828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ACF6352-C794-43AB-885D-82354327A828}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using AutoMapper;
+using Newtonsoft.Json;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.TweetMetrics;
-using SocialOpinionAPI.Labs;
+using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Models.TweetMetrics;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,19 @@ namespace SocialOpinionAPI.Services.TweetMetrics
     public class TweetMetricsService
     {
         private OAuthInfo _oAuthInfo;
+        private IMapper _iMapper;
 
         public TweetMetricsService(OAuthInfo oAuth)
         {
             _oAuthInfo = oAuth;
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TweetMetricDTO, TweetMetricModel>();
+
+            });
+
+            _iMapper = config.CreateMapper();
         }
 
         public List<TweetMetricModel> GetTweetMetrics(List<string> tweetIds)
@@ -26,11 +36,10 @@ namespace SocialOpinionAPI.Services.TweetMetrics
             string response = metricsClient.GetTweetMetrics(tweetIds);
 
             TweetMetricDTO tweetMetrics = JsonConvert.DeserializeObject<TweetMetricDTO>(response);
-
-            foreach(Data metricData in tweetMetrics.data)
+            
+            foreach (Data metricData in tweetMetrics.data)
             {
-                metricModels.Add(
-                    new TweetMetricModel
+                metricModels.Add(new TweetMetricModel
                     {
                         tweet_id = metricData.tweet_id,
                         impression_count = metricData.tweet.impression_count,

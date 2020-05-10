@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SocialOpinionAPI.Labs
+namespace SocialOpinionAPI.Clients
 {
     public class MetricsClient
     {
