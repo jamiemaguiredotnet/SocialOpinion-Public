@@ -1,8 +1,0 @@
-﻿
-
-
--- pushes nuget package as Jamie Maguire
-dotnet nuget push SocialOpinionAPI.0.0.3.nupkg -k oy2n33v7alamhcmvo5jqhvgpzfue45tepbtxee6jvpr6we -s https://api.nuget.org/v3/index.json
-
--- pushes nuget package as Social Opinion
-dotnet nuget push SocialOpinionAPI.0.0.3.nupkg -k oy2b47tloqq5e4bh65yaq54sgt2fus7e5h6ybrbzgk2szu -s https://api.nuget.org/v3/index.json
