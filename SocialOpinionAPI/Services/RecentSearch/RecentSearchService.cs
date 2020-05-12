@@ -21,6 +21,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
         private string _PlaceFields = "contained_within,country,country_code,full_name,geo,id,name,place_type";
         private string _PollFields = "duration_minutes,end_datetime,id,options,voting_status";
         private string _UserFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld";
+        private int _defaultTweetsPerPage = 100;
 
         public RecentSearchService(OAuthInfo oAuth)
         {
@@ -96,11 +97,11 @@ namespace SocialOpinionAPI.Services.RecentSearch
 
                 if (nextToken != _defaultToken)
                 {
-                    response = client.GetTweets(query, "", "", "", "", 100, nextToken, _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
+                    response = client.GetTweets(query, "", "", "", "", _defaultTweetsPerPage, nextToken, _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
                 }
                 else
                 {
-                    response = client.GetTweets(query, "", "", "", "", 100, "", _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
+                    response = client.GetTweets(query, "", "", "", "", _defaultTweetsPerPage, "", _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
                 }
 
                 RecentSearchResultsDTO resultsDTO = JsonConvert.DeserializeObject<RecentSearchResultsDTO>(response);
@@ -118,6 +119,86 @@ namespace SocialOpinionAPI.Services.RecentSearch
             }
             return resultsList;
         }
+
+        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults, string sinceid, string untilid)
+        {
+            RecentSearchClient client = new RecentSearchClient(_oAuthInfo);
+            List<RecentSearchResultsModel> resultsList = new List<RecentSearchResultsModel>();
+
+            string nextToken = _defaultToken;
+            int totalFetched = 0;
+
+            // page through the results until no more "next" tokens or we hit the max number of results we want
+            // todo: implement rate limit checking / back-off
+            while (!string.IsNullOrEmpty(nextToken) || totalFetched <= maxResults)
+            {
+                string response = string.Empty;
+
+                if (nextToken != _defaultToken)
+                {
+                    response = client.GetTweets(query, "", "", sinceid, untilid, _defaultTweetsPerPage, nextToken, _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
+                }
+                else
+                {
+                    response = client.GetTweets(query, "", "", sinceid, untilid, _defaultTweetsPerPage, "", _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
+                }
+
+                RecentSearchResultsDTO resultsDTO = JsonConvert.DeserializeObject<RecentSearchResultsDTO>(response);
+                RecentSearchResultsModel model = _iMapper.Map<RecentSearchResultsDTO, RecentSearchResultsModel>(resultsDTO);
+                resultsList.Add(model);
+
+                totalFetched += resultsDTO.meta.result_count;
+
+                if (totalFetched == maxResults)
+                {
+                    break;
+                }
+
+                nextToken = resultsDTO.meta.next_token;
+            }
+            return resultsList;
+        }
+
+        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults)
+        {
+            RecentSearchClient client = new RecentSearchClient(_oAuthInfo);
+            List<RecentSearchResultsModel> resultsList = new List<RecentSearchResultsModel>();
+
+            string nextToken = _defaultToken;
+            int totalFetched = 0;
+
+            // page through the results until no more "next" tokens or we hit the max number of results we want
+            // todo: implement rate limit checking / back-off
+            while (!string.IsNullOrEmpty(nextToken) || totalFetched <= maxResults)
+            {
+                string response = string.Empty;
+
+                if (nextToken != _defaultToken)
+                {
+                    response = client.GetTweets(query, "", "", "", "", _defaultTweetsPerPage, nextToken, _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
+                }
+                else
+                {
+                    response = client.GetTweets(query, "", "", "", "", _defaultTweetsPerPage, "", _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
+                }
+
+                RecentSearchResultsDTO resultsDTO = JsonConvert.DeserializeObject<RecentSearchResultsDTO>(response);
+                RecentSearchResultsModel model = _iMapper.Map<RecentSearchResultsDTO, RecentSearchResultsModel>(resultsDTO);
+                resultsList.Add(model);
+
+                totalFetched += resultsDTO.meta.result_count;
+
+                if (totalFetched == maxResults)
+                {
+                    break;
+                }
+
+                nextToken = resultsDTO.meta.next_token;
+            }
+            return resultsList;
+        }
+
+      
 
     }
 }
