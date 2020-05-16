@@ -110,7 +110,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
 
                 totalFetched += resultsDTO.meta.result_count;
 
-                if (totalFetched == maxResults)
+                if (totalFetched >= maxResults)
                 {
                     break;
                 }
@@ -149,7 +149,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
 
                 totalFetched += resultsDTO.meta.result_count;
 
-                if (totalFetched == maxResults)
+                if (totalFetched >= maxResults)
                 {
                     break;
                 }
@@ -188,7 +188,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
 
                 totalFetched += resultsDTO.meta.result_count;
 
-                if (totalFetched == maxResults)
+                if (totalFetched >= maxResults)
                 {
                     break;
                 }
