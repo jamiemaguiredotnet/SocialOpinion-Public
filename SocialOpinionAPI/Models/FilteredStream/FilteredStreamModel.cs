@@ -92,5 +92,6 @@ namespace SocialOpinionAPI.Models.FilteredStream
     {
         public string id { get; set; }
         public string tag { get; set; }
+        public string Value { get; set; }
     }
 }
