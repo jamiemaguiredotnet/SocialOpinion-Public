@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SocialOpinionAPI.Core;
+using SocialOpinionAPI.DTO.FilteredStream;
 using System;
 using System.IO;
 using System.Net;
@@ -8,9 +11,11 @@ namespace SocialOpinionAPI.Clients
 {
     public class FilteredStreamClient
     {
-        string _ConsumerKey = "";
-        string _ConsumerSecret = "";
-        string _BearerToken = "";
+        private string _ConsumerKey = "";
+        private string _ConsumerSecret = "";
+        private string _BearerToken = "";
+
+        private string _addRuleEndpoint = "https://api.twitter.com/labs/1/tweets/stream/filter/rules";
 
         //event to capture data received
         public event EventHandler FilteredStreamDataReceivedEvent;
@@ -144,6 +149,15 @@ namespace SocialOpinionAPI.Clients
                     Console.WriteLine(ex.Message);
                 }
             }
+        }
+
+        public string CreateRule(RulesToAddDTO rulesToAdd)
+        {
+            SocialOpinionAPI.Core.OAuthInfo oAuth = new Core.OAuthInfo { ConsumerKey = _ConsumerKey, ConsumerSecret = _ConsumerSecret };
+            string json = JsonConvert.SerializeObject(rulesToAdd);
+            BearerTokenRequestBuilder rb = new BearerTokenRequestBuilder(oAuth, "POST", _addRuleEndpoint);
+
+            return rb.Execute(json);
         }
     }
 }

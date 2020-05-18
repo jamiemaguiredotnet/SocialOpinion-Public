@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.FilteredStream;
+using SocialOpinionAPI.DTO.FilteredStream.Rules;
 using SocialOpinionAPI.Models.FilteredStream;
 using System;
 using System.Collections.Generic;
@@ -49,14 +50,25 @@ namespace SocialOpinionAPI.Services.FilteredStream
             _iMapper = config.CreateMapper();
         }
 
-        public Models.FilteredStream.MatchingRule CreateRule(Models.FilteredStream.MatchingRule rule)
+        public List<FilteredStreamRule> CreateRule(Models.FilteredStream.MatchingRule rule)
         {
-            throw new NotImplementedException();
-        }
+            FilteredStreamClient streamClient = new FilteredStreamClient(_oAuthInfo.ConsumerKey, _oAuthInfo.ConsumerSecret);
 
-        public Models.FilteredStream.MatchingRule SaveRule(Models.FilteredStream.MatchingRule rule)
-        {
-            throw new NotImplementedException();
+            RulesToAddDTO addRulesDTO = new RulesToAddDTO();
+
+            addRulesDTO.add.Add(new Add { value = rule.Value, tag = rule.tag });
+            string response = streamClient.CreateRule(addRulesDTO);
+
+            CreateRulesResponseDTO responseDTO = JsonConvert.DeserializeObject<CreateRulesResponseDTO>(response);
+
+            List<FilteredStreamRule> streamRules = new List<FilteredStreamRule>();
+            
+            foreach(RuleDTO dto in responseDTO.data)
+            {
+                streamRules.Add(new FilteredStreamRule { id = dto.id, tag = dto.tag, value = dto.value });
+            }
+
+            return streamRules;
         }
 
         public Models.FilteredStream.MatchingRule GetAllRules(Models.FilteredStream.MatchingRule rule)
@@ -80,8 +92,6 @@ namespace SocialOpinionAPI.Services.FilteredStream
 
         private void StreamClient_FilteredStreamDataReceivedEvent(object sender, EventArgs e)
         {
-            // todo
-            // get the json
             // convert to dto and model
             FilteredStreamClient.TweetReceivedEventArgs eventArgs = e as FilteredStreamClient.TweetReceivedEventArgs;
             DTO.FilteredStream.FilteredStreamDTO resultsDTO = JsonConvert.DeserializeObject<DTO.FilteredStream.FilteredStreamDTO>(eventArgs.filteredStreamDataResponse);

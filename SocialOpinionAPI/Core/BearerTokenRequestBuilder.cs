@@ -93,13 +93,18 @@ namespace SocialOpinionAPI.Core
             return string.Format("{0}?{1}", _url, GetCustomParametersString());
         }
 
-        public string Execute()
+        public string Execute(string jsonBody = "")
         {
             string requestUrl = GetRequestUrl();
 
             if (_method == "GET")
             {
                 return SendGET(requestUrl);
+            }
+
+            if(_method =="POST")
+            {
+                return SendPOST(requestUrl, jsonBody);
             }
 
             throw new NotImplementedException("Method not yet supported.");
@@ -130,6 +135,30 @@ namespace SocialOpinionAPI.Core
             }
         }
 
+        public string SendPOST(string address, string jsonBody)
+        {
+            GetBearerToken();
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(address);
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + GetBearerToken());
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            string strRequestContent = jsonBody;
+            byte[] bytearrayRequestContent = System.Text.Encoding.UTF8.GetBytes(strRequestContent);
+            System.IO.Stream requestStream = httpWebRequest.GetRequestStream();
+            requestStream.Write(bytearrayRequestContent, 0, bytearrayRequestContent.Length);
+            requestStream.Close();
+
+            string responseJson = string.Empty;
+
+            HttpWebResponse response = (HttpWebResponse)httpWebRequest.GetResponse();
+
+            System.IO.Stream responseStream = response.GetResponseStream();
+            responseJson = new StreamReader(responseStream).ReadToEnd();
+
+            return responseJson;
+        }
 
     }
 }
