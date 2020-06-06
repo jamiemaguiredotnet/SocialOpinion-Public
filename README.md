@@ -1,6 +1,8 @@
 # SocialOpinion-Public
 APIs written in C# that connect to the TwitterAPI
 
+Provides support for the following APIs:
+
 * Filtered Stream Client and Service
 [![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
 
@@ -35,7 +37,9 @@ Contains the C# APIs
 # SocialOpinionConsole
 Contains examples of how to use the APIs
 
-App.config
+The following configuration file must exist to ensure the test project works:
+
+**App.config**
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
@@ -47,3 +51,13 @@ App.config
   </appSettings>  
 </configuration>
 ```
+Alternatively, you can simply assign them in the **Program.cs** file here as string values and bypass loading them from the XML file
+```
+string _ConsumerKey = "key";
+string _ConsumerSecret = "secret";
+string _AccessToken = "access token";
+string _AccessTokenSecret = "access token secret";
+```
+## More documentation to soon!
+
+
