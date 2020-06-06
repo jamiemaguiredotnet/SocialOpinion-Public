@@ -15,7 +15,8 @@ namespace SocialOpinionAPI.Services.Tweet
         private OAuthInfo _oAuthInfo;
         private IMapper _iMapper;
         private string _expansionsFields = "attachments.poll_ids,attachments.media_keys,author_id,geo.place_id,in_reply_to_user_id,referenced_tweets.id";
-        private string _TweetFields = "attachments,author_id,context_annotations,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,source,text,withheld";
+        // promoted_metrics throws error when tweet isnt promoted
+        private string _TweetFields = "attachments,author_id,context_annotations,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,organic_metrics,public_metrics,referenced_tweets,source,text,withheld";
         private string _MediaFields = "duration_ms,height,media_key,non_public_metrics,preview_image_url,public_metrics,type,url,width";
         private string _PlaceFields = "contained_within,country,country_code,full_name,geo,id,name,place_type";
         private string _PollFields = "duration_minutes,end_datetime,id,options,voting_status";
@@ -32,6 +33,7 @@ namespace SocialOpinionAPI.Services.Tweet
                 cfg.CreateMap<DTO.Tweets.Data, Models.Tweets.Data>();
                 cfg.CreateMap<DTO.Tweets.Entities, Models.Tweets.Entities>();
                 cfg.CreateMap<DTO.Tweets.PublicMetrics, Models.Tweets.PublicMetrics>();
+                cfg.CreateMap<DTO.Tweets.OrganicMetrics, Models.Tweets.OrganicMetrics>();
                 cfg.CreateMap<DTO.Tweets.Url, Models.Tweets.Url>();
                 cfg.CreateMap<DTO.Tweets.Urls, Models.Tweets.Urls>();
                 cfg.CreateMap<DTO.Tweets.Includes, Models.Tweets.Includes>();

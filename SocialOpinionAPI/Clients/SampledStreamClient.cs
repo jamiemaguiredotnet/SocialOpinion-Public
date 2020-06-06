@@ -1,49 +1,45 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using SocialOpinionAPI.Core;
-using SocialOpinionAPI.DTO.FilteredStream;
+﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Web;
 
 namespace SocialOpinionAPI.Clients
 {
-    public class FilteredStreamClient
+    public class SampledStreamClient
     {
         private string _ConsumerKey = "";
         private string _ConsumerSecret = "";
         private string _BearerToken = "";
+        private string _streamEndpoint = "https://api.twitter.com/labs/1/tweets/stream/sample";
 
-        private string _addRuleEndpoint = "https://api.twitter.com/labs/1/tweets/stream/filter/rules";
-
-        //event to capture data received
-        public event EventHandler FilteredStreamDataReceivedEvent;
+        public event EventHandler StreamDataReceivedEvent;
         public class TweetReceivedEventArgs : EventArgs
         {
-            public string filteredStreamDataResponse { get; set; }
-        }
-        
-        protected void OnFilteredStreamDataReceivedEvent(TweetReceivedEventArgs dataReceivedEventArgs)
-        {
-            if (FilteredStreamDataReceivedEvent == null)
-                return;
-            FilteredStreamDataReceivedEvent(this, dataReceivedEventArgs);
+            public string StreamDataResponse { get; set; }
         }
 
-        public FilteredStreamClient(string consumerKey, string ConsumerSecret)
+        protected void OnStreamDataReceivedEvent(TweetReceivedEventArgs dataReceivedEventArgs)
+        {
+            if (StreamDataReceivedEvent == null)
+                return;
+            StreamDataReceivedEvent(this, dataReceivedEventArgs);
+        }
+
+        public SampledStreamClient(string consumerKey, string ConsumerSecret)
         {
             _ConsumerKey = consumerKey;
             _ConsumerSecret = ConsumerSecret;
             GetBearerToken();
         }
-
         private void GetBearerToken()
         {
             //https://dev.twitter.com/oauth/application-only
             //Step 1
             string strBearerRequest = HttpUtility.UrlEncode(_ConsumerKey) + ":" + HttpUtility.UrlEncode(_ConsumerSecret);
-          
+
             strBearerRequest = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(strBearerRequest));
 
             //Step 2
@@ -83,7 +79,7 @@ namespace SocialOpinionAPI.Clients
                 tried++;
                 try
                 {
-                    Console.WriteLine("Entered LabsStartFilteredStream at:" + DateTime.Now.ToString("F"));
+                    Console.WriteLine("Entered LabsStartSampledStream at:" + DateTime.Now.ToString("F"));
                     int recordsFetch = 0;
 
                     WebRequest request = WebRequest.Create(address);
@@ -114,14 +110,14 @@ namespace SocialOpinionAPI.Clients
                                     if (!string.IsNullOrEmpty(json))
                                     {
                                         // raise an event for a potential client to know we recieved data
-                                        OnFilteredStreamDataReceivedEvent(new TweetReceivedEventArgs { filteredStreamDataResponse = json });
+                                        OnStreamDataReceivedEvent(new TweetReceivedEventArgs { StreamDataResponse = json });
                                         recordsFetch = recordsFetch + 1;
                                         Console.WriteLine("records fetched:" + recordsFetch + " at " + DateTime.Now.ToString("F"));
                                     }
                                 } while (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()
                                             && !str.EndOfStream && recordsFetch <= maxTweets);
                             }
-                            Console.WriteLine("Exited LabsStartFilteredStream at:" + DateTime.Now.ToString("F"));
+                            Console.WriteLine("Exited LabsStartSampledStream at:" + DateTime.Now.ToString("F"));
                         }
                         else
                         {
@@ -152,13 +148,5 @@ namespace SocialOpinionAPI.Clients
             }
         }
 
-        public string CreateRule(RulesToAddDTO rulesToAdd)
-        {
-            SocialOpinionAPI.Core.OAuthInfo oAuth = new Core.OAuthInfo { ConsumerKey = _ConsumerKey, ConsumerSecret = _ConsumerSecret };
-            string json = JsonConvert.SerializeObject(rulesToAdd);
-            BearerTokenRequestBuilder rb = new BearerTokenRequestBuilder(oAuth, "POST", _addRuleEndpoint);
-
-            return rb.Execute(json);
-        }
     }
 }
