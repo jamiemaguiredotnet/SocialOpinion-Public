@@ -94,11 +94,6 @@ namespace SocialOpinionConsole
             SampledStreamModel model = eventArgs.StreamDataResponse;
         }
 
-        private static void StreamClient_StreamDataReceivedEvent(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private static void FilteredStreamService_DataReceivedEvent(object sender, EventArgs e)
         {
             FilteredStreamService.DataReceivedEventArgs eventArgs = e as FilteredStreamService.DataReceivedEventArgs;
