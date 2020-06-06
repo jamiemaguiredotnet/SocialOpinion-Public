@@ -58,6 +58,4 @@ string _ConsumerSecret = "secret";
 string _AccessToken = "access token";
 string _AccessTokenSecret = "access token secret";
 ```
-## More documentation to soon!
-
-
+## More documentation soon!
