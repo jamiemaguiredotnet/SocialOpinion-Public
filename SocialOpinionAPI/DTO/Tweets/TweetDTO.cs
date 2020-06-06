@@ -5,9 +5,26 @@ using System.Text;
 
 namespace SocialOpinionAPI.DTO.Tweets
 {
+
+    [JsonObject("organic_metrics")]
+    public class OrganicMetrics
+    {
+        [JsonProperty("impression_count")]
+        public int impression_count { get; set; }
+
+        [JsonProperty("like_count")]
+        public int like_count { get; set; }
+
+        [JsonProperty("reply_count")]
+        public int reply_count { get; set; }
+
+        [JsonProperty("retweet_count")]
+        public int retweet_count { get; set; }
+    }
+
+    [JsonObject("public_metrics")]
     public class PublicMetrics
     {
-
         [JsonProperty("retweet_count")]
         public int retweet_count { get; set; }
 
@@ -38,6 +55,9 @@ namespace SocialOpinionAPI.DTO.Tweets
 
         [JsonProperty("possibly_sensitive")]
         public bool possibly_sensitive { get; set; }
+
+        [JsonProperty("organic_metrics")]
+        public OrganicMetrics organic_metrics { get; set; }
 
         [JsonProperty("public_metrics")]
         public PublicMetrics public_metrics { get; set; }

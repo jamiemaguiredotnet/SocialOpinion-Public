@@ -2,13 +2,17 @@
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.RecentSearch;
 using SocialOpinionAPI.Models.FilteredStream;
+using SocialOpinionAPI.Models.HideReplies;
 using SocialOpinionAPI.Models.RecentSearch;
+using SocialOpinionAPI.Models.SampledStream;
 using SocialOpinionAPI.Models.TweetMetrics;
 using SocialOpinionAPI.Models.Tweets;
 using SocialOpinionAPI.Models.Users;
 using SocialOpinionAPI.Services;
 using SocialOpinionAPI.Services.FilteredStream;
+using SocialOpinionAPI.Services.HideReply;
 using SocialOpinionAPI.Services.RecentSearch;
+using SocialOpinionAPI.Services.SampledStream;
 using SocialOpinionAPI.Services.Tweet;
 using SocialOpinionAPI.Services.TweetMetrics;
 using SocialOpinionAPI.Services.Users;
@@ -35,6 +39,16 @@ namespace SocialOpinionConsole
                 ConsumerKey = _ConsumerKey
             };
 
+            // Hide Reply
+            HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
+            HideReplyModel model = hideRepliesService.HideReply("1266378790747303939");
+
+
+            // Sampled Stream Service Test
+            SampledStreamService streamService = new SampledStreamService(oAuthInfo);
+            streamService.DataReceivedEvent += StreamService_DataReceivedEvent;
+            streamService.StartStream("https://api.twitter.com/labs/1/tweets/stream/sample?tweet.format=detailed", 100, 5);
+            
             // Recent Search 
             RecentSearchService searchService = new RecentSearchService(oAuthInfo);
             
@@ -72,6 +86,17 @@ namespace SocialOpinionConsole
            
             filteredStreamService.DataReceivedEvent += FilteredStreamService_DataReceivedEvent;
             filteredStreamService.StartStream("https://api.twitter.com/labs/1/tweets/stream/filter?tweet.format=detailed", 10, 5);
+        }
+
+        private static void StreamService_DataReceivedEvent(object sender, EventArgs e)
+        {
+            SampledStreamService.DataReceivedEventArgs eventArgs = e as SampledStreamService.DataReceivedEventArgs;
+            SampledStreamModel model = eventArgs.StreamDataResponse;
+        }
+
+        private static void StreamClient_StreamDataReceivedEvent(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private static void FilteredStreamService_DataReceivedEvent(object sender, EventArgs e)

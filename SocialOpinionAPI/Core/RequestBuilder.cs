@@ -54,15 +54,12 @@ namespace SocialOpinionAPI.Core
             var response = request.GetResponse();
 
             string content;
-            //AXResponse exResponse = null;
-
+          
             using (var stream = response.GetResponseStream())
             {
                 using (var reader = new StreamReader(stream))
                 {
                     content = reader.ReadToEnd();
-
-                    //exResponse = JsonConvert.DeserializeObject<AXResponse>(content);
                 }
             }
 

@@ -4,6 +4,14 @@ using System.Text;
 
 namespace SocialOpinionAPI.Models.Tweets
 {
+    public class OrganicMetrics
+    {
+        public int impression_count { get; set; }
+        public int like_count { get; set; }
+        public int reply_count { get; set; }
+        public int quote_count { get; set; }
+    }
+
     public class PublicMetrics
     {
         public int retweet_count { get; set; }
@@ -20,6 +28,7 @@ namespace SocialOpinionAPI.Models.Tweets
         public string lang { get; set; }
         public bool possibly_sensitive { get; set; }
         public PublicMetrics public_metrics { get; set; }
+        public OrganicMetrics organic_metrics { get; set; }
         public string source { get; set; }
         public string text { get; set; }
     }
