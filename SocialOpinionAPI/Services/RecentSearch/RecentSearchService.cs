@@ -41,6 +41,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
                 cfg.CreateMap<DTO.RecentSearch.Hashtag, Models.RecentSearch.Hashtag>();
                 cfg.CreateMap<DTO.RecentSearch.Entities, Models.RecentSearch.Entities>();
                 cfg.CreateMap<DTO.RecentSearch.PublicMetrics, Models.RecentSearch.PublicMetrics>();
+                cfg.CreateMap<DTO.RecentSearch.UserPublicMetrics, Models.RecentSearch.UserPublicMetrics>();
                 cfg.CreateMap<DTO.RecentSearch.ReferencedTweet, Models.RecentSearch.ReferencedTweet>();
                 cfg.CreateMap<DTO.RecentSearch.Medium, Models.RecentSearch.Medium>();
                 cfg.CreateMap<DTO.RecentSearch.User, Models.RecentSearch.User>();
@@ -48,6 +49,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
                 cfg.CreateMap<DTO.RecentSearch.Includes, Models.RecentSearch.Includes>();
                 cfg.CreateMap<DTO.RecentSearch.Meta, Models.RecentSearch.Meta>();
                 cfg.CreateMap<DTO.RecentSearch.Url, Models.RecentSearch.Url>();
+
             });
 
             _iMapper = config.CreateMapper();

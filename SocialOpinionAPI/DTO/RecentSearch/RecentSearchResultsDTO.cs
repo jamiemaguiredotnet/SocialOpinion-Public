@@ -162,6 +162,21 @@ namespace SocialOpinionAPI.DTO.RecentSearch
         public int quote_count { get; set; }
     }
 
+    public class UserPublicMetrics
+    {
+        [JsonProperty("followers_count")]
+        public int followers_count { get; set; }
+
+        [JsonProperty("following_count")]
+        public int following_count { get; set; }
+
+        [JsonProperty("tweet_count")]
+        public int tweet_count { get; set; }
+
+        [JsonProperty("listed_count")]
+        public int listed_count { get; set; }
+    }
+
     public class ReferencedTweet
     {
         [JsonProperty("type")]
@@ -252,7 +267,7 @@ namespace SocialOpinionAPI.DTO.RecentSearch
         public bool is_protected { get; set; }
 
         [JsonProperty("public_metrics")]
-        public PublicMetrics public_metrics { get; set; }
+        public UserPublicMetrics public_metrics { get; set; }
 
         [JsonProperty("url")]
         public string url { get; set; }
