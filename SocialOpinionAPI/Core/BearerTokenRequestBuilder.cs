@@ -26,7 +26,7 @@ namespace SocialOpinionAPI.Core
 
         public BearerTokenRequestBuilder AddParameter(string name, string value)
         {
-            _customParameters.Add(name, value);
+            _customParameters.Add(name, value.EncodeDataString());
             return this;
         }
 
