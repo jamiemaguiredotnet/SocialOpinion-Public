@@ -56,7 +56,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
         }
 
 
-        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults, string expansionFields = "",
+        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults, int maxAttempts, string expansionFields = "",
                                                            string tweetFields = "", string mediaFields = "",
                                                            string placeFields = "", string pollFields = "", string userFields = "")
         {
@@ -65,6 +65,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
 
             string nextToken = _defaultToken;
             int totalFetched = 0;
+            int numAttempts = 0;
 
             if (!string.IsNullOrEmpty(expansionFields))
             {
@@ -117,18 +118,28 @@ namespace SocialOpinionAPI.Services.RecentSearch
                     break;
                 }
 
+                numAttempts = numAttempts + 1;
+
+                if (numAttempts == maxAttempts)
+                {
+                    // exit as we dont want blocked by Twitter
+                    Console.WriteLine("Backing off from Twitter API. Reached Max Attempts for query " + query);
+                    break;
+                }
+
                 nextToken = resultsDTO.meta.next_token;
             }
             return resultsList;
         }
 
-        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults, string sinceid, string untilid)
+        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults, string sinceid, string untilid, int maxAttempts)
         {
             RecentSearchClient client = new RecentSearchClient(_oAuthInfo);
             List<RecentSearchResultsModel> resultsList = new List<RecentSearchResultsModel>();
 
             string nextToken = _defaultToken;
             int totalFetched = 0;
+            int numAttempts = 0;
 
             // page through the results until no more "next" tokens or we hit the max number of results we want
             // todo: implement rate limit checking / back-off
@@ -156,21 +167,32 @@ namespace SocialOpinionAPI.Services.RecentSearch
                     break;
                 }
 
+                numAttempts = numAttempts + 1;
+
+                if (numAttempts == maxAttempts)
+                {
+                    // exit as we dont want blocked by Twitter                    
+                    Console.WriteLine("Backing off from Twitter API. Reached Max Attempts for query " + query);
+                    break;
+                }
+
                 nextToken = resultsDTO.meta.next_token;
             }
             return resultsList;
         }
 
-        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults)
+        public List<RecentSearchResultsModel> SearchTweets(string query, int maxResults, int maxAttempts)
         {
             RecentSearchClient client = new RecentSearchClient(_oAuthInfo);
             List<RecentSearchResultsModel> resultsList = new List<RecentSearchResultsModel>();
 
             string nextToken = _defaultToken;
             int totalFetched = 0;
+            int numAttempts = 0;
 
             // page through the results until no more "next" tokens or we hit the max number of results we want
             // todo: implement rate limit checking / back-off
+
             while (!string.IsNullOrEmpty(nextToken) || totalFetched <= maxResults)
             {
                 string response = string.Empty;
@@ -189,6 +211,15 @@ namespace SocialOpinionAPI.Services.RecentSearch
                 resultsList.Add(model);
 
                 totalFetched += resultsDTO.meta.result_count;
+                
+                numAttempts = numAttempts + 1;
+
+                if(numAttempts == maxAttempts)
+                {
+                    // exit as we dont want blocked by Twitter                    
+                    Console.WriteLine("Backing off from Twitter API. Reached Max Attempts for query " + query);
+                    break;
+                }
 
                 if (totalFetched >= maxResults)
                 {

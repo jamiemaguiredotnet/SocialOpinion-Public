@@ -52,7 +52,7 @@ namespace SocialOpinionConsole
             // Recent Search 
             RecentSearchService searchService = new RecentSearchService(oAuthInfo);
             
-            List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100);
+            List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100,3);
 
             // Tweet(s)
             TweetService tweetsService = new TweetService(oAuthInfo);
