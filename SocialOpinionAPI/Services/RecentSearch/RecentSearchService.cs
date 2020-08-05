@@ -197,7 +197,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
             {
                 string response = string.Empty;
 
-                if (nextToken != _defaultToken)
+                if (nextToken != _defaultToken && !string.IsNullOrEmpty(nextToken))
                 {
                     response = client.GetTweets(query, "", "", "", "", _defaultTweetsPerPage, nextToken, _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
                 }
