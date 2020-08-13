@@ -6,7 +6,7 @@ Provides support for the following APIs:
 * Filtered Stream Client and Service
 [![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
 
-* Metrics Service Client and Service
+* Metrics Client and Service
 [![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
 
 * Recent Search Client and Service
