@@ -9,7 +9,7 @@ namespace SocialOpinionAPI.Clients
     public class RecentSearchClient
     {
         private const int _defaultTweetsPerPage = 100;
-        private string _recentSearchEndpoint = "https://api.twitter.com/labs/2/tweets/search";
+        private string _recentSearchEndpoint = "https://api.twitter.com/2/tweets/search/recent";
         private OAuthInfo _oAuthInfo;
 
         public RecentSearchClient(OAuthInfo oAuthInfo)

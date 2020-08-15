@@ -15,7 +15,7 @@ namespace SocialOpinionAPI.Clients
         private string _ConsumerSecret = "";
         private string _BearerToken = "";
 
-        private string _addRuleEndpoint = "https://api.twitter.com/labs/1/tweets/stream/filter/rules";
+        private string _addRuleEndpoint = "https://api.twitter.com/2/tweets/search/stream/rules";
 
         //event to capture data received
         public event EventHandler FilteredStreamDataReceivedEvent;

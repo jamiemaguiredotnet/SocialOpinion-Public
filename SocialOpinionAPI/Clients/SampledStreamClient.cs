@@ -13,7 +13,7 @@ namespace SocialOpinionAPI.Clients
         private string _ConsumerKey = "";
         private string _ConsumerSecret = "";
         private string _BearerToken = "";
-        private string _streamEndpoint = "https://api.twitter.com/labs/1/tweets/stream/sample";
+        private string _streamEndpoint = "https://api.twitter.com/2/tweets/sample/stream";
 
         public event EventHandler StreamDataReceivedEvent;
         public class TweetReceivedEventArgs : EventArgs

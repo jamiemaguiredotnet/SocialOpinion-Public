@@ -47,7 +47,7 @@ namespace SocialOpinionConsole
             // Sampled Stream Service Test
             SampledStreamService streamService = new SampledStreamService(oAuthInfo);
             streamService.DataReceivedEvent += StreamService_DataReceivedEvent;
-            streamService.StartStream("https://api.twitter.com/labs/1/tweets/stream/sample?tweet.format=detailed", 100, 5);
+            streamService.StartStream("https://api.twitter.com/2/tweets/sample/stream?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,geo.place_id,in_reply_to_user_id,referenced_tweets.id,referenced_tweets.id.author_id", 100, 5);
             
             // Recent Search 
             RecentSearchService searchService = new RecentSearchService(oAuthInfo);
@@ -56,16 +56,16 @@ namespace SocialOpinionConsole
 
             // Tweet(s)
             TweetService tweetsService = new TweetService(oAuthInfo);
-            TweetModel tweetModel = tweetsService.GetTweet("1258736674844094465");
+            TweetModel tweetModel = tweetsService.GetTweet("1293779846691270658");
 
             List<string> tids = new List<string>();
-            tids.Add("1258736674844094465"); // social opinion tweet
-            tids.Add("1199807993942020098"); // social opinion tweet
+            tids.Add("1293779846691270658"); // social opinion tweet
+            tids.Add("1293779846691270658"); // social opinion tweet
             TweetsModel tweetModels = tweetsService.GetTweets(tids);
 
             // User(s)
             UserService userService = new UserService(oAuthInfo);
-            UserModel userModel = userService.GetUser("jamie_maguire1");
+            UserModel userModel = userService.GetUser("socialopinions");
 
             List<string> users = new List<string>();
             users.Add("jamie_maguire1");
@@ -85,7 +85,7 @@ namespace SocialOpinionConsole
                 new MatchingRule { tag = "testing #iPhone", Value = "#iphone" });
            
             filteredStreamService.DataReceivedEvent += FilteredStreamService_DataReceivedEvent;
-            filteredStreamService.StartStream("https://api.twitter.com/labs/1/tweets/stream/filter?tweet.format=detailed", 10, 5);
+            filteredStreamService.StartStream("https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,public_metrics,possibly_sensitive,referenced_tweets,source,text,withheld&expansions=author_id&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld", 10, 5);
         }
 
         private static void StreamService_DataReceivedEvent(object sender, EventArgs e)
