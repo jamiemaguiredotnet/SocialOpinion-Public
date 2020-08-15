@@ -11,7 +11,7 @@ Provides support for the following V2 APIs:
  
  # Prerequisites
 * Twitter Developer Account
-* Twitter Project and Application in the new Twitter Develoepr Portal
+* Twitter Project and Application in the new Twitter Developer Portal
 * Obtain your application key and secret from the Twitter Developer Admin screen
 * App.config file in SocialOpinionConsole Project with Application Keys and Secrets from the Twitter Developer Admin screen
 
