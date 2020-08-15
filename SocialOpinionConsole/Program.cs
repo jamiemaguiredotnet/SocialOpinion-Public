@@ -39,7 +39,7 @@ namespace SocialOpinionConsole
                 ConsumerKey = _ConsumerKey
             };
 
-            // Hide Reply
+            // Hide Reply (currently points to the Labs Endpoint)
             HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
             HideReplyModel model = hideRepliesService.HideReply("1266378790747303939");
 
