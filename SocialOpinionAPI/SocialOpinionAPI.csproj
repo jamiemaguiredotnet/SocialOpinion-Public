@@ -3,7 +3,7 @@
   <PropertyGroup>
   <TargetFramework>netcoreapp3.1</TargetFramework>
 	<PackageId>SocialOpinionAPI</PackageId>
-	<Version>0.0.8</Version>
+	<Version>0.0.9</Version>
 	<Authors>Jamie Maguire</Authors>
 	<Company>Social Opinion</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
