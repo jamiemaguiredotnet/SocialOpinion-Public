@@ -40,10 +40,9 @@ namespace SocialOpinionConsole
             };
 
             // Hide Reply (currently points to the Labs Endpoint)
-            HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
-            HideReplyModel model = hideRepliesService.HideReply("1266378790747303939");
-
-
+            //HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
+            //HideReplyModel model = hideRepliesService.HideReply("1266378790747303939");
+            
             // Sampled Stream Service Test
             SampledStreamService streamService = new SampledStreamService(oAuthInfo);
             streamService.DataReceivedEvent += StreamService_DataReceivedEvent;
