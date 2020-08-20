@@ -4,6 +4,7 @@ APIs written in C# that connect to the NEW TwitterAPI (Early Access v2 endpoints
 Provides support for the following V2 APIs:
 
  * Filtered Stream
+ * Hide Replies
  * Recent Search
  * Tweet Lookup
  * User Lookup
