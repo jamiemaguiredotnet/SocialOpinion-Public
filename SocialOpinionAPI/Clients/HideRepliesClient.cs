@@ -8,7 +8,7 @@ namespace SocialOpinionAPI.Clients
 {
     public class HideRepliesClient
     {
-        private string _hideReply = "https://api.twitter.com/labs/2/tweets/:id/hidden";
+        private string _hideReply = "https://api.twitter.com/2/tweets/:id/hidden";
         private OAuthInfo _oAuthInfo;
 
         public HideRepliesClient(OAuthInfo oAuthInfo)
