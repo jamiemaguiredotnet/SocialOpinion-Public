@@ -130,7 +130,7 @@ namespace SocialOpinionAPI.Models.RecentSearch
         public string name { get; set; }
         public string profile_image_url { get; set; }
         public bool is_protected { get; set; }
-        public PublicMetrics public_metrics { get; set; }
+        public Users.PublicMetrics public_metrics { get; set; }
         public string url { get; set; }
         public string username { get; set; }
         public bool verified { get; set; }
