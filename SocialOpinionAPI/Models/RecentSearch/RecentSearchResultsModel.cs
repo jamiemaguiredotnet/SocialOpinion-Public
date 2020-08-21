@@ -90,6 +90,14 @@ namespace SocialOpinionAPI.Models.RecentSearch
         public int quote_count { get; set; }
     }
 
+    public class UserPublicMetrics
+    {
+        public int followers_count { get; set; }
+        public int following_count { get; set; }
+        public int tweet_count { get; set; }
+        public int listed_count { get; set; }
+    }
+
     public class ReferencedTweet
     {
         public string type { get; set; }
@@ -131,6 +139,7 @@ namespace SocialOpinionAPI.Models.RecentSearch
         public string profile_image_url { get; set; }
         public bool is_protected { get; set; }
         public Users.PublicMetrics public_metrics { get; set; }
+
         public string url { get; set; }
         public string username { get; set; }
         public bool verified { get; set; }

@@ -50,7 +50,7 @@ namespace SocialOpinionConsole
             // Recent Search 
             RecentSearchService searchService = new RecentSearchService(oAuthInfo);
             
-            List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100);
+            List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100,3);
 
             // Tweet(s)
             TweetService tweetsService = new TweetService(oAuthInfo);
@@ -90,11 +90,6 @@ namespace SocialOpinionConsole
         {
             SampledStreamService.DataReceivedEventArgs eventArgs = e as SampledStreamService.DataReceivedEventArgs;
             SampledStreamModel model = eventArgs.StreamDataResponse;
-        }
-
-        private static void StreamClient_StreamDataReceivedEvent(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private static void FilteredStreamService_DataReceivedEvent(object sender, EventArgs e)
