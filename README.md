@@ -1,14 +1,14 @@
 # SocialOpinion-Public
-APIs written in C# that connect to the NEW TwitterAPI (Early Access v2 endpoints)
+APIs written in C# that connect to the NEW TwitterAPI (v2)
 
-Provides support for the following V2 APIs:
+Provides support for the following APIs:
 
- * Filtered Stream
- * Hide Replies
- * Recent Search
- * Tweet Lookup
- * User Lookup
- * Sampled Stream
+ * Filtered Stream [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Hide Replies [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Recent Search [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Tweet Lookup [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * User Lookup [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Sampled Stream [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
  
  # Prerequisites
 * Twitter Developer Account
