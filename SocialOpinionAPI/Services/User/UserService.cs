@@ -19,7 +19,7 @@ namespace SocialOpinionAPI.Services.Users
         private string _MediaFields = "duration_ms,height,media_key,preview_image_url,type,url,width";
         private string _PlaceFields = "contained_within,country,country_code,full_name,geo,id,name,place_type";
         private string _PollFields = "duration_minutes,end_datetime,id,options,voting_status";
-        private string _UserFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld";
+        private string _UserFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld,non_public_metrics";
 
 
         public UserService(OAuthInfo oAuth)

@@ -65,6 +65,9 @@ namespace SocialOpinionConsole
             UserService userService = new UserService(oAuthInfo);
             UserModel userModel = userService.GetUser("socialopinions");
 
+            UserService userService2 = new UserService(oAuthInfo);
+            UserModel userModel2 = userService2.GetUser("jamie_maguire1");
+
             List<string> users = new List<string>();
             users.Add("jamie_maguire1");
             users.Add("socialopinions");

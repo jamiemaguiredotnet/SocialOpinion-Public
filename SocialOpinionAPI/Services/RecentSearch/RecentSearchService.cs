@@ -124,7 +124,8 @@ namespace SocialOpinionAPI.Services.RecentSearch
                 {
                     // exit as we dont want blocked by Twitter
                     Console.WriteLine("Backing off from Twitter API. Reached Max Attempts for query " + query);
-                    break;
+                    return resultsList;
+                    //break;
                 }
 
                 nextToken = resultsDTO.meta.next_token;
@@ -173,7 +174,7 @@ namespace SocialOpinionAPI.Services.RecentSearch
                 {
                     // exit as we dont want blocked by Twitter                    
                     Console.WriteLine("Backing off from Twitter API. Reached Max Attempts for query " + query);
-                    break;
+                    return resultsList;
                 }
 
                 nextToken = resultsDTO.meta.next_token;
@@ -218,7 +219,8 @@ namespace SocialOpinionAPI.Services.RecentSearch
                 {
                     // exit as we dont want blocked by Twitter                    
                     Console.WriteLine("Backing off from Twitter API. Reached Max Attempts for query " + query);
-                    break;
+                    return resultsList;
+                    //break;
                 }
 
                 if (totalFetched >= maxResults)
