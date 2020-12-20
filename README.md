@@ -1,40 +1,20 @@
 # SocialOpinion-Public
-APIs written in C# that connect to the NEW TwitterAPI (Early Access v2 endpoints)
+APIs written in C# that connect to the NEW TwitterAPI
 
-Provides support for the following V2 APIs:
+Provides support for the following endpoints:
 
- * Filtered Stream
- * Hide Replies
- * Recent Search
- * Tweet Lookup
- * User Lookup
- * Sampled Stream
+ * Filtered Stream [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Hide Replies [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Recent Search [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Tweet Lookup [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * User Lookup [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
+ * Sampled Stream [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
  
  # Prerequisites
 * Twitter Developer Account
 * Twitter Project and Application in the new Twitter Developer Portal
 * Obtain your application key and secret from the Twitter Developer Admin screen
 * App.config file in SocialOpinionConsole Project with Application Keys and Secrets from the Twitter Developer Admin screen
-
-# Support for Labs APIs is available in the "feature/Labs" branch
-
-* Filtered Stream Client and Service
-[![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
-
-* Metrics Client and Service
-[![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
-
-* Recent Search Client and Service
-[![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
-
-* Tweets / Users Client and Service
-[![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
-
-* Sampled Stream Client and Service
-[![Labs v1](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v1&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)
-
-* Hide Replies Client and Service
-[![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)  
 
 # Prerequisites
 * Twitter Developer Account

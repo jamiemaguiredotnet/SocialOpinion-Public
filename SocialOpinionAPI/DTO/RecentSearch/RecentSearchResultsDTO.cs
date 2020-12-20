@@ -267,7 +267,7 @@ namespace SocialOpinionAPI.DTO.RecentSearch
         public bool is_protected { get; set; }
 
         [JsonProperty("public_metrics")]
-        public UserPublicMetrics public_metrics { get; set; }
+        public SocialOpinionAPI.Models.Users.PublicMetrics public_metrics { get; set; }
 
         [JsonProperty("url")]
         public string url { get; set; }
