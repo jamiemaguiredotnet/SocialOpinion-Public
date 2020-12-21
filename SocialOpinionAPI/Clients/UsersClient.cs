@@ -9,6 +9,9 @@ namespace SocialOpinionAPI.Clients
     {
         private string _singleUserEndpoint = "https://api.twitter.com/2/users/by/username/";
         private string _multipleUsersEndpoint = "https://api.twitter.com/2/users/by";
+        private string _following = "https://api.twitter.com/2/users/:id/following";
+        private string _followers = "https://api.twitter.com/2/users/:id/followers";
+
 
         private OAuthInfo _oAuthInfo;
 
@@ -58,6 +61,56 @@ namespace SocialOpinionAPI.Clients
             return result;
         }
 
+
+        public string GetFollowers(string id, string expansions, string maxResults, string pagination_token, 
+                                   string tweet_fields, string user_fields)
+        {
+            _followers = _followers.Replace(":id", id);
+                
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _followers);
+
+            rb.AddParameter("expansions", expansions);
+            
+            if(!string.IsNullOrEmpty(maxResults))
+            {
+                rb.AddParameter("max_results", maxResults);
+            }
+            if (!string.IsNullOrEmpty(pagination_token))
+            {
+                rb.AddParameter("pagination_token", pagination_token);
+            }
+            rb.AddParameter("tweet.fields", tweet_fields);
+            rb.AddParameter("user.fields", user_fields);
+            
+            string result = rb.Execute();
+
+            return result;
+        }
+
+        public string GetFollowing(string id, string expansions, string maxResults, string pagination_token,
+                                   string tweet_fields, string user_fields)
+        {
+            _following = _following.Replace(":id", id);
+
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _following);
+
+            rb.AddParameter("expansions", expansions);
+
+            if (!string.IsNullOrEmpty(maxResults))
+            {
+                rb.AddParameter("max_results", maxResults);
+            }
+            if (!string.IsNullOrEmpty(pagination_token))
+            {
+                rb.AddParameter("pagination_token", pagination_token);
+            }
+            rb.AddParameter("tweet.fields", tweet_fields);
+            rb.AddParameter("user.fields", user_fields);
+
+            string result = rb.Execute();
+
+            return result;
+        }
 
     }
 }
