@@ -75,8 +75,11 @@ namespace SocialOpinionConsole
             users.Add("socialopinions");
             UsersModel usersResults = userService.GetUsers(users);
 
-            FollowersModel followers = userService.GetFollowers("958676983", "100", null);
-            FollowingModel following = userService.GetFollowing("38906681", "100", null);
+            UserService myUserService = new UserService(oAuthInfo);
+
+            FollowersModel followers = myUserService.GetFollowers("958676983", "100", null);
+
+            FollowingModel following = myUserService.GetFollowing("38906681", "100", null);
 
             // Metrics  
             List<string> ids = new List<string>();
