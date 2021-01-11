@@ -24,6 +24,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\AdsApi\**" />
+    <Compile Remove="Models\AdsApi\**" />
+    <EmbeddedResource Remove="DTO\AdsApi\**" />
+    <EmbeddedResource Remove="Models\AdsApi\**" />
+    <None Remove="DTO\AdsApi\**" />
+    <None Remove="Models\AdsApi\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
@@ -33,11 +42,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTO\AdsApi\" />
-    <Folder Include="Models\AdsApi\" />
   </ItemGroup>
 
 </Project>

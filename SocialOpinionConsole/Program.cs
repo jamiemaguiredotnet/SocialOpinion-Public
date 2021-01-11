@@ -15,6 +15,7 @@ using SocialOpinionAPI.Services.FilteredStream;
 using SocialOpinionAPI.Services.HideReply;
 using SocialOpinionAPI.Services.RecentSearch;
 using SocialOpinionAPI.Services.SampledStream;
+using SocialOpinionAPI.Services.Timeline;
 using SocialOpinionAPI.Services.Tweet;
 using SocialOpinionAPI.Services.TweetMetrics;
 using SocialOpinionAPI.Services.Users;
@@ -40,6 +41,10 @@ namespace SocialOpinionConsole
                 ConsumerSecret = _ConsumerSecret,
                 ConsumerKey = _ConsumerKey
             };
+
+            TimelineService timeLineService = new TimelineService(oAuthInfo);
+
+            timeLineService.GetUserMentionedTimeline("38906681", null, 100, null, null, null, null);
 
             HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
             HideReplyModel model = hideRepliesService.HideReply("1296341968176451585");
