@@ -69,6 +69,10 @@ namespace SocialOpinionAPI.Services.Timeline
             {
                 exclude.Add("replies");
             }
+
+            client.GetTweetsTimeline(id, endtime, string.Join(",", exclude), _expansionsFields, 
+                                     maxResults, _MediaFields, pagination_token, _PlaceFields, 
+                                     _PlaceFields, since_id, startTime, _TweetFields, until_id, _UserFields);
         }
 
         public UserMentionedTimelineModel GetUserMentionedTimeline(string id, DateTime? endtime, int maxResults, string pagination_token, DateTime? startTime, string since_id, string until_id)

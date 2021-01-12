@@ -7,6 +7,7 @@ using SocialOpinionAPI.Models.Following;
 using SocialOpinionAPI.Models.HideReplies;
 using SocialOpinionAPI.Models.RecentSearch;
 using SocialOpinionAPI.Models.SampledStream;
+using SocialOpinionAPI.Models.Timeline;
 using SocialOpinionAPI.Models.TweetMetrics;
 using SocialOpinionAPI.Models.Tweets;
 using SocialOpinionAPI.Models.Users;
@@ -44,7 +45,8 @@ namespace SocialOpinionConsole
 
             TimelineService timeLineService = new TimelineService(oAuthInfo);
 
-            timeLineService.GetUserMentionedTimeline("38906681", null, 100, null, null, null, null);
+            UserMentionedTimelineModel userMentionedTimeline = 
+                timeLineService.GetUserMentionedTimeline("38906681", null, 10, null, null, null, null);
 
             HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
             HideReplyModel model = hideRepliesService.HideReply("1296341968176451585");

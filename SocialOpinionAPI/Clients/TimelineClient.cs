@@ -16,19 +16,19 @@ namespace SocialOpinionAPI.Clients
             _oAuthInfo = oAuthInfo;
         }
 
-        public string GetTweetsTimeline(string id, string endtime, string exclude,
-                               string expansions, string maxResults, string mediafields,
+        public string GetTweetsTimeline(string id, DateTime? endtime, string exclude,
+                               string expansions, int maxResults, string mediafields,
                                string pagination_token, string placefields, string pollfields,
-                               string since_id, string start_time, string tweet_fields,
+                               string since_id, DateTime? start_time, string tweet_fields,
                                string until_id, string user_fields)
         {
             _userTweetsTimeline = _userTweetsTimeline.Replace(":id", id);
 
             RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _userTweetsTimeline);
 
-            if (!string.IsNullOrEmpty(endtime))
+            if (endtime.HasValue)
             {
-                rb.AddParameter("end_time", endtime);
+                rb.AddParameter("end_time", endtime.Value.ToString());
             }
 
             if (!string.IsNullOrEmpty(exclude))
@@ -38,9 +38,9 @@ namespace SocialOpinionAPI.Clients
 
             rb.AddParameter("expansions", expansions);
 
-            if (!string.IsNullOrEmpty(maxResults))
+            if (maxResults>0)
             {
-                rb.AddParameter("max_results", maxResults);
+                rb.AddParameter("max_results", maxResults.ToString());
             }
 
             if (!string.IsNullOrEmpty(mediafields))
@@ -68,9 +68,9 @@ namespace SocialOpinionAPI.Clients
                 rb.AddParameter("since_id", since_id);
             }
 
-            if (!string.IsNullOrEmpty(start_time))
+            if (start_time.HasValue)
             {
-                rb.AddParameter("start_time", start_time);
+                rb.AddParameter("start_time", start_time.Value.ToString());
             }
 
             if (!string.IsNullOrEmpty(tweet_fields))
