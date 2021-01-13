@@ -45,8 +45,12 @@ namespace SocialOpinionConsole
 
             TimelineService timeLineService = new TimelineService(oAuthInfo);
 
+            UserTweetTimelineModel timelineModel = timeLineService.GetUserTweetsTimeline("958676983", null, false, false, 100, null, null, null, null);
+
+
+
             UserMentionedTimelineModel userMentionedTimeline = 
-                timeLineService.GetUserMentionedTimeline("38906681", null, 10, null, null, null, null);
+                timeLineService.GetUserMentionedTimeline("958676983", null, 10, null, null, null, null);
 
             HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
             HideReplyModel model = hideRepliesService.HideReply("1296341968176451585");

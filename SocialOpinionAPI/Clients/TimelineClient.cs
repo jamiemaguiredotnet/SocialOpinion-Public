@@ -75,7 +75,7 @@ namespace SocialOpinionAPI.Clients
 
             if (!string.IsNullOrEmpty(tweet_fields))
             {
-                rb.AddParameter("tweet_fields", tweet_fields);
+                rb.AddParameter("tweet.fields", tweet_fields);
             }
 
             if (!string.IsNullOrEmpty(until_id))

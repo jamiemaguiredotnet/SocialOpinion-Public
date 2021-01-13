@@ -3,7 +3,7 @@
   <PropertyGroup>
   <TargetFramework>netcoreapp3.1</TargetFramework>
 	<PackageId>SocialOpinionAPI</PackageId>
-	<Version>2.0.4</Version>
+	<Version>2.0.5</Version>
 	<Authors>Jamie Maguire</Authors>
 	<Company>Social Opinion</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -12,13 +12,36 @@
 	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the new Twitter API (v2).</Description>
 	<RepositoryUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</PackageProjectUrl>
-	<AssemblyVersion>2.0.4.0</AssemblyVersion>
-	<FileVersion>2.0.3.0</FileVersion>
+	<AssemblyVersion>2.0.5.0</AssemblyVersion>
+	<FileVersion>2.0.5.0</FileVersion>
 	<PackageTags>C#, Twitter API</PackageTags>
 	<Copyright>Social Opinion</Copyright>
-	<PackageReleaseNotes>Added support for v2 Follows API endpoints:
+	<PackageReleaseNotes>Support for the following v2 endpoints:
 
- - GET /2/users/:id/mentions</PackageReleaseNotes>
+Tweet lookup:
+ - GET /2/tweets
+ - GET /2/tweets/:id
+
+Recent Search
+ - https://api.twitter.com/2/tweets/search/recent
+
+Timelines:
+ - GET /2/users/:id/tweets
+ - GET /2/users/:id/mentions
+
+Filtered Stream:
+ - GET /2/tweets/search/stream/rules
+ - GET /2/tweets/search/stream
+ - POST /2/tweets/search/stream/rules
+
+Sampled Stream:
+ - https://api.twitter.com/2/tweets/sample/stream
+
+Hide Replies:
+ - https://api.twitter.com/2/tweets/:id/hidden
+
+
+ -</PackageReleaseNotes>
 
   </PropertyGroup>
 
