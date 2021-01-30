@@ -108,6 +108,11 @@ namespace SocialOpinionAPI.Services.Timeline
         {
             TimelineClient client = new TimelineClient(_oAuthInfo);
 
+            if (_includePrivateMetrics == false)
+            {
+                _TweetFields = _TweetFields.Replace("non_public_metrics,", "");
+                _TweetFields = _TweetFields.Replace("organic_metrics,", "");
+            }
 
             string results = client.GetMentionedTimeline(id, endtime, _expansionsFields, maxResults, _MediaFields, pagination_token,
                                                          _PlaceFields, _PollFields, since_id, startTime, _TweetFields, until_id, _UserFields);

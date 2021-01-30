@@ -47,10 +47,8 @@ namespace SocialOpinionConsole
 
             UserTweetTimelineModel timelineModel = timeLineService.GetUserTweetsTimeline("958676983", null, false, false, 100, null, null, null, null);
 
-
-
-            UserMentionedTimelineModel userMentionedTimeline = 
-                timeLineService.GetUserMentionedTimeline("958676983", null, 10, null, null, null, null);
+            UserMentionedTimelineModel userMentionedTimeline =
+                timeLineService.GetUserMentionedTimeline("38906681", null, 10, null, null, null, null);
 
             HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
             HideReplyModel model = hideRepliesService.HideReply("1296341968176451585");
@@ -65,9 +63,14 @@ namespace SocialOpinionConsole
 
             List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100, 3);
 
-            // Tweet(s)
             TweetService tweetsService = new TweetService(oAuthInfo);
-            TweetModel tweetModel = tweetsService.GetTweet("1293779846691270658");
+            TweetModel tweetModel = tweetsService.GetTweet("1349116955505160200");
+            
+            Console.WriteLine(tweetModel.data.text);
+            Console.WriteLine(tweetModel.data.organic_metrics.impression_count);
+            Console.WriteLine(tweetModel.data.organic_metrics.like_count);
+            
+            Console.ReadLine();
 
             List<string> tids = new List<string>();
             tids.Add("1293779846691270658"); // social opinion tweet
