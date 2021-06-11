@@ -5,6 +5,7 @@ using SocialOpinionAPI.Models.FilteredStream;
 using SocialOpinionAPI.Models.Followers;
 using SocialOpinionAPI.Models.Following;
 using SocialOpinionAPI.Models.HideReplies;
+using SocialOpinionAPI.Models.Likes;
 using SocialOpinionAPI.Models.RecentSearch;
 using SocialOpinionAPI.Models.SampledStream;
 using SocialOpinionAPI.Models.Timeline;
@@ -14,6 +15,7 @@ using SocialOpinionAPI.Models.Users;
 using SocialOpinionAPI.Services;
 using SocialOpinionAPI.Services.FilteredStream;
 using SocialOpinionAPI.Services.HideReply;
+using SocialOpinionAPI.Services.Likes;
 using SocialOpinionAPI.Services.RecentSearch;
 using SocialOpinionAPI.Services.SampledStream;
 using SocialOpinionAPI.Services.Timeline;
@@ -43,9 +45,9 @@ namespace SocialOpinionConsole
                 ConsumerKey = _ConsumerKey
             };
 
-            TimelineService timeLineService = new TimelineService(oAuthInfo);
+            TimelineService timeLineService = new TimelineService(oAuthInfo, false);
 
-            UserTweetTimelineModel timelineModel = timeLineService.GetUserTweetsTimeline("958676983", null, false, false, 100, null, null, null, null);
+            UserTweetTimelineModel timelineModel = timeLineService.GetUserTweetsTimeline("373097188", null, false, false, 100, null, null, null, null);
 
             UserMentionedTimelineModel userMentionedTimeline =
                 timeLineService.GetUserMentionedTimeline("38906681", null, 10, null, null, null, null);
@@ -65,11 +67,11 @@ namespace SocialOpinionConsole
 
             TweetService tweetsService = new TweetService(oAuthInfo);
             TweetModel tweetModel = tweetsService.GetTweet("1349116955505160200");
-            
+
             Console.WriteLine(tweetModel.data.text);
             Console.WriteLine(tweetModel.data.organic_metrics.impression_count);
             Console.WriteLine(tweetModel.data.organic_metrics.like_count);
-            
+
             Console.ReadLine();
 
             List<string> tids = new List<string>();
@@ -109,6 +111,18 @@ namespace SocialOpinionConsole
 
             filteredStreamService.DataReceivedEvent += FilteredStreamService_DataReceivedEvent;
             filteredStreamService.StartStream("https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,public_metrics,possibly_sensitive,referenced_tweets,source,text,withheld&expansions=author_id&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld", 10, 5);
+
+
+            // Likes Lookup
+            LikesService likesService = new LikesService(oAuthInfo);
+
+            List<LikesModel> listOfTweets = likesService.GetUsersLikedTweets("38906681", 5, 1);
+
+            List<SocialOpinionAPI.Models.Likes.User> listOfUsersWhoLikedATweet = likesService.GetLikingUsers("1402547535391121409");
+
+            bool hasLiked = likesService.LikeTweet("958676983", "1402590400557240324");
+
+            bool unliked = likesService.UnLikeTweet("958676983", "1402590400557240324");
         }
 
         private static void StreamService_DataReceivedEvent(object sender, EventArgs e)
