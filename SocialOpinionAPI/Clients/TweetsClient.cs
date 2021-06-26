@@ -10,6 +10,7 @@ namespace SocialOpinionAPI.Clients
 
         private string _tweetEndpoint = "https://api.twitter.com/2/tweets/";
         private string _tweetsEndpoint = "https://api.twitter.com/2/tweets";
+        private string _tweetCounts = "https://api.twitter.com/2/tweets/counts/recent";
 
         private OAuthInfo _oAuthInfo;
 
@@ -45,6 +46,38 @@ namespace SocialOpinionAPI.Clients
             rb.AddParameter("place.fields", place_fields);
             rb.AddParameter("poll.fields", poll_fields);
             rb.AddParameter("user.fields", user_fields);
+
+            return rb.Execute();
+        }
+
+        public string CountsRecent(string query, string end_time, string granularity, string since_id,
+                                   string start_time, string until_id)
+        {
+            BearerTokenRequestBuilder rb = new BearerTokenRequestBuilder(_oAuthInfo, "GET", _tweetCounts);
+
+            rb.AddParameter("query", query);
+
+            if (!string.IsNullOrEmpty(end_time))
+            {
+                rb.AddParameter("end_time", end_time);
+            }
+
+            rb.AddParameter("granularity", granularity.ToLower());
+            
+            if (!string.IsNullOrEmpty(since_id))
+            {
+                rb.AddParameter("since_id", since_id);
+            }
+
+            if (!string.IsNullOrEmpty(start_time))
+            {
+                rb.AddParameter("start_time", start_time);
+            }
+
+            if (!string.IsNullOrEmpty(until_id))
+            {
+                rb.AddParameter("until_id", until_id);
+            }
 
             return rb.Execute();
         }

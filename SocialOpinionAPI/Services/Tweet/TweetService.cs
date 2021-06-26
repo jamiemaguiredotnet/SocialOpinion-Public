@@ -22,6 +22,13 @@ namespace SocialOpinionAPI.Services.Tweet
         private string _PollFields = "duration_minutes,end_datetime,id,options,voting_status";
         private string _UserFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld";
 
+        public enum CountsGranularity
+        {
+           Day,
+           Hour,
+           Minute
+        }
+
         public TweetService(OAuthInfo oAuth)
         {
             _oAuthInfo = oAuth;
@@ -39,6 +46,10 @@ namespace SocialOpinionAPI.Services.Tweet
                 cfg.CreateMap<DTO.Tweets.Includes, Models.Tweets.Includes>();
                 cfg.CreateMap<DTO.Tweets.User, Models.Tweets.User>();
                 cfg.CreateMap<DTO.Users.Attachments, Models.Users.Attachments>();
+
+                cfg.CreateMap<DTO.Tweets.TweetCountsDTO, Models.Tweets.TweetCountsModel>();
+                cfg.CreateMap<DTO.Tweets.TweetCountData, Models.Tweets.TweetCountData>();
+                cfg.CreateMap<DTO.Tweets.Meta, Models.Tweets.Meta>();
             });
 
             _iMapper = config.CreateMapper();
@@ -69,6 +80,22 @@ namespace SocialOpinionAPI.Services.Tweet
 
             return model;
         }
+
+        public TweetCountsModel GetTweetCounts(string query, DateTime end_time, CountsGranularity granularity, string since_id, DateTime start_time, string until_id)
+        {
+            TweetsClient client = new TweetsClient(_oAuthInfo);
+
+            string countsJSON = client.CountsRecent(query, end_time.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz"), granularity.ToString(), since_id, start_time.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz"), until_id);
+
+            TweetCountsDTO resultsDTO = JsonConvert.DeserializeObject<TweetCountsDTO>(countsJSON);
+
+            TweetCountsModel model = _iMapper.Map<TweetCountsDTO, TweetCountsModel>(resultsDTO);
+
+            return model;
+
+        }
+
+       
 
     }
 }

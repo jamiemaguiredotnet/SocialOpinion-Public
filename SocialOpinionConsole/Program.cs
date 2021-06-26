@@ -67,6 +67,8 @@ namespace SocialOpinionConsole
 
             TweetService tweetsService = new TweetService(oAuthInfo);
             TweetModel tweetModel = tweetsService.GetTweet("1349116955505160200");
+            // Counts Lookup
+            tweetsService.GetTweetCounts("BTC", DateTime.Now, TweetService.CountsGranularity.Hour, "", DateTime.Now.AddDays(-1), "");
 
             Console.WriteLine(tweetModel.data.text);
             Console.WriteLine(tweetModel.data.organic_metrics.impression_count);
@@ -123,6 +125,9 @@ namespace SocialOpinionConsole
             bool hasLiked = likesService.LikeTweet("958676983", "1402590400557240324");
 
             bool unliked = likesService.UnLikeTweet("958676983", "1402590400557240324");
+
+          
+
         }
 
         private static void StreamService_DataReceivedEvent(object sender, EventArgs e)
