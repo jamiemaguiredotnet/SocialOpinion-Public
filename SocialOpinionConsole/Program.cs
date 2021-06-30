@@ -1,6 +1,7 @@
 ﻿using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.RecentSearch;
+using SocialOpinionAPI.Models.Blocks;
 using SocialOpinionAPI.Models.FilteredStream;
 using SocialOpinionAPI.Models.Followers;
 using SocialOpinionAPI.Models.Following;
@@ -13,6 +14,7 @@ using SocialOpinionAPI.Models.TweetMetrics;
 using SocialOpinionAPI.Models.Tweets;
 using SocialOpinionAPI.Models.Users;
 using SocialOpinionAPI.Services;
+using SocialOpinionAPI.Services.Blocks;
 using SocialOpinionAPI.Services.FilteredStream;
 using SocialOpinionAPI.Services.HideReply;
 using SocialOpinionAPI.Services.Likes;
@@ -123,10 +125,17 @@ namespace SocialOpinionConsole
             List<SocialOpinionAPI.Models.Likes.User> listOfUsersWhoLikedATweet = likesService.GetLikingUsers("1402547535391121409");
 
             bool hasLiked = likesService.LikeTweet("958676983", "1402590400557240324");
-
             bool unliked = likesService.UnLikeTweet("958676983", "1402590400557240324");
 
-          
+            // Blocks Service
+            BlocksService blocksService = new BlocksService(oAuthInfo);
+
+            List<BlocksModel> lists = blocksService.GetBlocks("958676983", 10);
+
+            bool blockedResult = blocksService.Block("958676983", "34655603");
+
+            bool nowBlocked = blocksService.UnBlock("958676983", "34655603");
+
 
         }
 
