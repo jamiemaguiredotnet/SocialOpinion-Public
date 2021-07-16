@@ -3,7 +3,7 @@
   <PropertyGroup>
   <TargetFramework>netcoreapp3.1</TargetFramework>
 	<PackageId>SocialOpinionAPI</PackageId>
-	<Version>2.0.9</Version>
+	<Version>2.0.12</Version>
 	<Authors>Jamie Maguire</Authors>
 	<Company>Social Opinion</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -12,8 +12,8 @@
 	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the new Twitter API (v2).</Description>
 	<RepositoryUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</PackageProjectUrl>
-	<AssemblyVersion>2.0.9.0</AssemblyVersion>
-	<FileVersion>2.0.9.0</FileVersion>
+	<AssemblyVersion>2.0.12.0</AssemblyVersion>
+	<FileVersion>2.0.12.0</FileVersion>
 	<PackageTags>C#, Twitter API, V2, .NET Core</PackageTags>
 	<Copyright>Social Opinion</Copyright>
 	<PackageReleaseNotes>An API written in C# tageting .NET Core makes it simple for you to use the new Twitter API v2.
@@ -57,7 +57,16 @@ Blocks
 
 User Lookup
 -GET /2/users/by/username/:username
--GET /2/users/by</PackageReleaseNotes>
+-GET /2/users/by
+
+Blocks
+-GET /2/users/:id/blocking
+-POST /2/users/:id/blocking
+-DELETE /2/users/:source_user_id/blocking/:target_user_id
+
+Mutes
+-POST /2/users/:id/muting
+-DELETE /2/users/:source_user_id/muting/:target_user_id</PackageReleaseNotes>
 
   </PropertyGroup>
 
@@ -80,6 +89,10 @@ User Lookup
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Mutes\" />
   </ItemGroup>
 
 </Project>

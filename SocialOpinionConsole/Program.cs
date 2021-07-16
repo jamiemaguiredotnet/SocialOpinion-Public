@@ -18,6 +18,7 @@ using SocialOpinionAPI.Services.Blocks;
 using SocialOpinionAPI.Services.FilteredStream;
 using SocialOpinionAPI.Services.HideReply;
 using SocialOpinionAPI.Services.Likes;
+using SocialOpinionAPI.Services.Mutes;
 using SocialOpinionAPI.Services.RecentSearch;
 using SocialOpinionAPI.Services.SampledStream;
 using SocialOpinionAPI.Services.Timeline;
@@ -134,9 +135,14 @@ namespace SocialOpinionConsole
 
             bool blockedResult = blocksService.Block("958676983", "34655603");
 
-            bool nowBlocked = blocksService.UnBlock("958676983", "34655603");
+            bool result = blocksService.UnBlock("958676983", "34655603");
 
+            // Mutes Service
+            MutesService mutesService = new MutesService(oAuthInfo);
 
+            bool isMuting = mutesService.Mute("958676983", "34655603");
+
+            bool Muting = mutesService.UnMute("958676983", "34655603");
         }
 
         private static void StreamService_DataReceivedEvent(object sender, EventArgs e)

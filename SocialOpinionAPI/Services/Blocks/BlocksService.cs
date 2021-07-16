@@ -120,7 +120,7 @@ namespace SocialOpinionAPI.Services.Blocks
 
             string response = client.Block(id, userToBlock);
 
-            BlockUseResponseDTO resultsDTO = JsonConvert.DeserializeObject<BlockUseResponseDTO>(response);
+            BlockUserResponseDTO resultsDTO = JsonConvert.DeserializeObject<BlockUserResponseDTO>(response);
 
             return resultsDTO.data.blocking;
         }
@@ -134,12 +134,9 @@ namespace SocialOpinionAPI.Services.Blocks
         {
             BlocksClient client = new BlocksClient(_oAuthInfo);
 
-            //UnBlockUserDTO unblockUserDTO = new UnBlockUserDTO {};
-            //string userToBlock = JsonConvert.SerializeObject(unblockUserDTO);
-
             string response = client.UnBlock(source_user_id, target_user_id);
 
-            BlockUseResponseDTO resultsDTO = JsonConvert.DeserializeObject<BlockUseResponseDTO>(response);
+            BlockUserResponseDTO resultsDTO = JsonConvert.DeserializeObject<BlockUserResponseDTO>(response);
 
             return resultsDTO.data.blocking;
         }

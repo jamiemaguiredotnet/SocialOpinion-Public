@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SocialOpinionAPI.DTO.Blocks
+namespace SocialOpinionAPI.DTO.Mutes
 {
-    public class BlockUserDTO
+    public class MuteUserDTO
     {
         public string target_user_id { get; set; }
     }
 
-    public class BlockUserResponseDTO
+    public class MuteUserResponseDTO
     {
         public Data data { get; set; }
     }
 
     public class Data
     {
-        public bool blocking { get; set; }
+        public bool muting { get; set; }
     }
-
 }
