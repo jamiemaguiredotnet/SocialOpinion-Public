@@ -25,11 +25,6 @@ Provides support for the following endpoints:
 * Obtain your application key and secret from the Twitter Developer Admin screen
 * App.config file in SocialOpinionConsole Project with Application Keys and Secrets from the Twitter Developer Admin screen
 
-# Prerequisites
-* Twitter Developer Account
-* Twitter Developer Labs Setup (for Labs interfaces)
-* Obtain your application key and secret from the Twitter Developer Admin screen
-* App.config file in SocialOpinionConsole Project with Application Keys and Secrets from the Twitter Developer Admin screen
 
 # SocialOpinionAPI
 Contains the C# APIs
