@@ -9,7 +9,9 @@
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageIcon>icon.jpg</PackageIcon>
 	<PackageIconUrl />
-	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the new Twitter API (v2).</Description>
+	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the new Twitter API (v2).
+
+(https://developer.twitter.com/en/docs/api-reference-index#twitter-api-v2)</Description>
 	<RepositoryUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</PackageProjectUrl>
 	<AssemblyVersion>2.0.12.0</AssemblyVersion>
@@ -66,7 +68,12 @@ Blocks
 
 Mutes
 -POST /2/users/:id/muting
--DELETE /2/users/:source_user_id/muting/:target_user_id</PackageReleaseNotes>
+-DELETE /2/users/:source_user_id/muting/:target_user_id
+
+Retweets
+-DELETE /2/users/:id/retweets/:source_tweet_id
+-GET /2/tweets/:id/retweeted_by
+-POST /2/users/:id/retweets</PackageReleaseNotes>
 
   </PropertyGroup>
 

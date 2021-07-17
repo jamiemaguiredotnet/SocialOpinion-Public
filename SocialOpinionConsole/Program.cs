@@ -20,6 +20,7 @@ using SocialOpinionAPI.Services.HideReply;
 using SocialOpinionAPI.Services.Likes;
 using SocialOpinionAPI.Services.Mutes;
 using SocialOpinionAPI.Services.RecentSearch;
+using SocialOpinionAPI.Services.Retweets;
 using SocialOpinionAPI.Services.SampledStream;
 using SocialOpinionAPI.Services.Timeline;
 using SocialOpinionAPI.Services.Tweet;
@@ -141,8 +142,14 @@ namespace SocialOpinionConsole
             MutesService mutesService = new MutesService(oAuthInfo);
 
             bool isMuting = mutesService.Mute("958676983", "34655603");
+            isMuting = mutesService.UnMute("958676983", "34655603");
 
-            bool Muting = mutesService.UnMute("958676983", "34655603");
+            // Retweet Service
+            RetweetsService retweetService = new RetweetsService(oAuthInfo);
+            retweetService.GetWhoRetweetedTweet("1413595913331826694");
+
+            bool retweeted = retweetService.RemoveRetweet("958676983", "1413595913331826694");
+            retweeted = retweetService.Retweet("958676983", "1413595913331826694");
         }
 
         private static void StreamService_DataReceivedEvent(object sender, EventArgs e)
