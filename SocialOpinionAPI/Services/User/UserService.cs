@@ -26,10 +26,12 @@ namespace SocialOpinionAPI.Services.Users
         //private string _UserFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld,non_public_metrics";
         private string _UserFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,url,username,verified,withheld";
 
+        private bool _includePrivateMetrics = true;
 
-        public UserService(OAuthInfo oAuth)
+        public UserService(OAuthInfo oAuth, bool includePrivateMetrics = true)
         {
             _oAuthInfo = oAuth;
+            _includePrivateMetrics = includePrivateMetrics;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -109,6 +111,13 @@ namespace SocialOpinionAPI.Services.Users
             string tweetFields = "attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,public_metrics,organic_metrics,promoted_metrics,possibly_sensitive,referenced_tweets,reply_settings,source,text,withheld";
             string userFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld";
             
+            if (_includePrivateMetrics == false)
+            {
+                tweetFields = tweetFields.Replace("non_public_metrics,", "");
+                tweetFields = tweetFields.Replace("organic_metrics,", "");
+                tweetFields = tweetFields.Replace("promoted_metrics,", "");
+            }
+
             string followersJson = client.GetFollowers(id, _expansionsFields, maxResults, paginationToken, tweetFields, userFields);
 
             FollowersDTO resultsDTO = JsonConvert.DeserializeObject<FollowersDTO>(followersJson);
@@ -125,6 +134,13 @@ namespace SocialOpinionAPI.Services.Users
             // these override the base behaviour for the user service when fetching followers
             string tweetFields = "attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,non_public_metrics,public_metrics,organic_metrics,promoted_metrics,possibly_sensitive,referenced_tweets,reply_settings,source,text,withheld";
             string userFields = "created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld";
+            
+            if (_includePrivateMetrics == false)
+            {
+                tweetFields = tweetFields.Replace("non_public_metrics,", "");
+                tweetFields = tweetFields.Replace("organic_metrics,", "");
+                tweetFields = tweetFields.Replace("promoted_metrics,", "");
+            }
 
             string followersJson = client.GetFollowing(id, _expansionsFields, maxResults, paginationToken, tweetFields, userFields);
 
