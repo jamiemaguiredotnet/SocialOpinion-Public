@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.DTO.Users
 {
@@ -25,14 +24,12 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class Urls
     {
-
         [JsonProperty("urls")]
         public IList<Url> urls { get; set; }
     }
 
     public class Hashtag
     {
-
         [JsonProperty("start")]
         public int start { get; set; }
 
@@ -45,7 +42,6 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class Mention
     {
-
         [JsonProperty("start")]
         public int start { get; set; }
 
@@ -58,7 +54,6 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class Description
     {
-
         [JsonProperty("hashtags")]
         public IList<Hashtag> hashtags { get; set; }
 
@@ -68,7 +63,6 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class Entities
     {
-
         [JsonProperty("url")]
         public Url url { get; set; }
 
@@ -78,7 +72,6 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class PublicMetrics
     {
-
         [JsonProperty("followers_count")]
         public int followers_count { get; set; }
 
@@ -136,14 +129,12 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class Attachments
     {
-
         [JsonProperty("media_keys")]
         public IList<string> media_keys { get; set; }
     }
 
     public class Tweet
     {
-
         [JsonProperty("attachments")]
         public Attachments attachments { get; set; }
 
@@ -177,7 +168,6 @@ namespace SocialOpinionAPI.DTO.Users
 
     public class Includes
     {
-
         [JsonProperty("tweets")]
         public IList<Tweet> tweets { get; set; }
     }
@@ -199,9 +189,4 @@ namespace SocialOpinionAPI.DTO.Users
         [JsonProperty("includes")]
         public Includes includes { get; set; }
     }
-
-
 }
-
-
-

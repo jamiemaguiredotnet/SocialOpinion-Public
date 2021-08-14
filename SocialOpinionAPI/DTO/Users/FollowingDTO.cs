@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
-using SocialOpinionAPI.DTO.Users.Followers;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.DTO.Users.Following
 {

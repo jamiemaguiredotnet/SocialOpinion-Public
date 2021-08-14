@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Models.Tweets
 {
@@ -85,7 +84,4 @@ namespace SocialOpinionAPI.Models.Tweets
         public List<Data> data { get; set; }
         public Includes includes { get; set; }
     }
-
-
-
 }

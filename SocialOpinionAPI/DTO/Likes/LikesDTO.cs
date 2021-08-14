@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.DTO.Likes
 {
-   
     // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public class Annotation
     {

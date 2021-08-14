@@ -145,8 +145,8 @@ namespace SocialOpinionAPI.Core
             httpWebRequest.Method = "POST";
 
             string strRequestContent = jsonBody;
-            byte[] bytearrayRequestContent = System.Text.Encoding.UTF8.GetBytes(strRequestContent);
-            System.IO.Stream requestStream = httpWebRequest.GetRequestStream();
+            byte[] bytearrayRequestContent = Encoding.UTF8.GetBytes(strRequestContent);
+            Stream requestStream = httpWebRequest.GetRequestStream();
             requestStream.Write(bytearrayRequestContent, 0, bytearrayRequestContent.Length);
             requestStream.Close();
 
@@ -154,7 +154,7 @@ namespace SocialOpinionAPI.Core
 
             HttpWebResponse response = (HttpWebResponse)httpWebRequest.GetResponse();
 
-            System.IO.Stream responseStream = response.GetResponseStream();
+            Stream responseStream = response.GetResponseStream();
             responseJson = new StreamReader(responseStream).ReadToEnd();
 
             return responseJson;

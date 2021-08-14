@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SocialOpinionAPI.Models.FilteredStream
+﻿namespace SocialOpinionAPI.Models.FilteredStream
 {
     public class FilteredStreamRule
     {

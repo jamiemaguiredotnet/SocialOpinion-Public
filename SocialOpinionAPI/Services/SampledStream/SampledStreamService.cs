@@ -5,8 +5,6 @@ using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.SampledStream;
 using SocialOpinionAPI.Models.SampledStream;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.SampledStream
 {
@@ -18,7 +16,7 @@ namespace SocialOpinionAPI.Services.SampledStream
         public event EventHandler DataReceivedEvent;
         public class DataReceivedEventArgs : EventArgs
         {
-            public Models.SampledStream.SampledStreamModel StreamDataResponse { get; set; }
+            public SampledStreamModel StreamDataResponse { get; set; }
         }
         protected void OnDataReceivedEvent(DataReceivedEventArgs dataReceivedEventArgs)
         {
@@ -61,7 +59,7 @@ namespace SocialOpinionAPI.Services.SampledStream
         {
             // convert to dto and model
             SampledStreamClient.TweetReceivedEventArgs eventArgs = e as SampledStreamClient.TweetReceivedEventArgs;
-            DTO.SampledStream.SampledStreamDTO resultsDTO = JsonConvert.DeserializeObject<DTO.SampledStream.SampledStreamDTO>(eventArgs.StreamDataResponse);
+            SampledStreamDTO resultsDTO = JsonConvert.DeserializeObject<SampledStreamDTO>(eventArgs.StreamDataResponse);
             SampledStreamModel model = _iMapper.Map<SampledStreamDTO, SampledStreamModel>(resultsDTO);
 
             // raise event with Model

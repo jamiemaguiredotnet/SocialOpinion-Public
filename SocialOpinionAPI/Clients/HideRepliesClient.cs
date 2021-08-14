@@ -1,8 +1,4 @@
 ﻿using SocialOpinionAPI.Core;
-using SocialOpinionAPI.DTO.HideReplies;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Clients
 {

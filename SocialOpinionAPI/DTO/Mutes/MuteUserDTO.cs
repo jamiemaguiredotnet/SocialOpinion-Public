@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SocialOpinionAPI.DTO.Mutes
+﻿namespace SocialOpinionAPI.DTO.Mutes
 {
     public class MuteUserDTO
     {

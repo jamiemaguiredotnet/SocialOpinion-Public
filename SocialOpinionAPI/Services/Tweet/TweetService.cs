@@ -6,7 +6,6 @@ using SocialOpinionAPI.DTO.Tweets;
 using SocialOpinionAPI.Models.Tweets;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Tweet
 {

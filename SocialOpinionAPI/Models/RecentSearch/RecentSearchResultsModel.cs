@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Models.RecentSearch
 {
-
     public class Attachments
     {
         public IList<string> media_keys { get; set; }

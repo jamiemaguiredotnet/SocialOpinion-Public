@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SocialOpinionAPI.DTO.Likes
 {
-
     public class UserDTO
     {
-        public List<DTO.Likes.User> data { get; set; }
+        public List<User> data { get; set; }
         public Meta meta { get; set; }
     }
-
 }

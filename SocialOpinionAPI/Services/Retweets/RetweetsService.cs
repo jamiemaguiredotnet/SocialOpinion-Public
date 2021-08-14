@@ -5,9 +5,6 @@ using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.Retweet;
 using SocialOpinionAPI.DTO.Users;
 using SocialOpinionAPI.Models.Users;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Retweets
 {

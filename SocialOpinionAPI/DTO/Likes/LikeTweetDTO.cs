@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SocialOpinionAPI.DTO.Likes
+﻿namespace SocialOpinionAPI.DTO.Likes
 {
     public class LikeTweetDTO
     {

@@ -6,7 +6,6 @@ using SocialOpinionAPI.DTO.Timeline;
 using SocialOpinionAPI.Models.Timeline;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Timeline
 {

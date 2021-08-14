@@ -1,7 +1,4 @@
 ﻿using SocialOpinionAPI.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Clients
 {

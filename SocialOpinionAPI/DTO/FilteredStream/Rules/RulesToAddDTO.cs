@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SocialOpinionAPI.DTO.FilteredStream
 {
-
     public class RulesToAddDTO
     {
         public List<Add> add { get; set; }

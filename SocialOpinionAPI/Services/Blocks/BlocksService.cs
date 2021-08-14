@@ -6,7 +6,6 @@ using SocialOpinionAPI.DTO.Blocks;
 using SocialOpinionAPI.Models.Blocks;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Blocks
 {

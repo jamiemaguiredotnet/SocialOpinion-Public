@@ -4,9 +4,6 @@ using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.HideReplies;
 using SocialOpinionAPI.Models.HideReplies;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.HideReply
 {

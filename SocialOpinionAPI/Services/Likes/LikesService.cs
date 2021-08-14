@@ -3,12 +3,9 @@ using Newtonsoft.Json;
 using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.Likes;
-using SocialOpinionAPI.DTO.Users;
 using SocialOpinionAPI.Models.Likes;
-using SocialOpinionAPI.Models.Users;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Likes
 {
@@ -54,9 +51,6 @@ namespace SocialOpinionAPI.Services.Likes
                 cfg.CreateMap<DTO.Likes.Domain, Models.Likes.Domain>();
                 cfg.CreateMap<DTO.Likes.Entity, Models.Likes.Entity>();
                 cfg.CreateMap<DTO.Likes.Entities, Models.Likes.Entities>();
-
-
-
             });
 
             _iMapper = config.CreateMapper();
@@ -76,7 +70,7 @@ namespace SocialOpinionAPI.Services.Likes
 
             response = likesClient.GetLikingUsers(tweetId, _expansionsFields, _TweetFields, _MediaFields, _PlaceFields, _PollFields, _UserFields);
             
-            DTO.Likes.UserDTO resultsDTO = JsonConvert.DeserializeObject<DTO.Likes.UserDTO>(response);
+            UserDTO resultsDTO = JsonConvert.DeserializeObject<UserDTO>(response);
 
             foreach(var user in resultsDTO.data)
             {

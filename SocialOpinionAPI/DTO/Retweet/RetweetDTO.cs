@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SocialOpinionAPI.DTO.Retweet
+﻿namespace SocialOpinionAPI.DTO.Retweet
 {
     public class RetweetDTO
     {

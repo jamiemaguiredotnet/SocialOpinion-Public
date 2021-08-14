@@ -3,9 +3,6 @@ using Newtonsoft.Json;
 using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.Mutes;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Mutes
 {
@@ -56,5 +53,4 @@ namespace SocialOpinionAPI.Services.Mutes
             return resultsDTO.data.muting;
         }
     }
-
 }

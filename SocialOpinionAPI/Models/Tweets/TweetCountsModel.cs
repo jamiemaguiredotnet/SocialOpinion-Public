@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Models.Tweets
 {
@@ -21,6 +20,4 @@ namespace SocialOpinionAPI.Models.Tweets
         public IList<TweetCountData> data { get; set; }
         public Meta meta { get; set; }
     }
-
-
 }

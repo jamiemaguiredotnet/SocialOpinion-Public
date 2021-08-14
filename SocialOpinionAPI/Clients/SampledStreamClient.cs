@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
+using System.Threading;
 using System.Web;
 
 namespace SocialOpinionAPI.Clients
@@ -40,7 +39,7 @@ namespace SocialOpinionAPI.Clients
             //Step 1
             string strBearerRequest = HttpUtility.UrlEncode(_ConsumerKey) + ":" + HttpUtility.UrlEncode(_ConsumerSecret);
 
-            strBearerRequest = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(strBearerRequest));
+            strBearerRequest = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(strBearerRequest));
 
             //Step 2
             WebRequest request = WebRequest.Create("https://api.twitter.com/oauth2/token");
@@ -50,7 +49,7 @@ namespace SocialOpinionAPI.Clients
 
             string strRequestContent = "grant_type=client_credentials";
             byte[] bytearrayRequestContent = System.Text.Encoding.UTF8.GetBytes(strRequestContent);
-            System.IO.Stream requestStream = request.GetRequestStream();
+            Stream requestStream = request.GetRequestStream();
             requestStream.Write(bytearrayRequestContent, 0, bytearrayRequestContent.Length);
             requestStream.Close();
 
@@ -59,7 +58,7 @@ namespace SocialOpinionAPI.Clients
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                System.IO.Stream responseStream = response.GetResponseStream();
+                Stream responseStream = response.GetResponseStream();
                 responseJson = new StreamReader(responseStream).ReadToEnd();
             }
 
@@ -137,12 +136,12 @@ namespace SocialOpinionAPI.Clients
                     }
                     //we double-check the tries here just so if we aren't "trying" again we don't unnecessarily wait a few seconds
                     if (tried < maxTries)
-                        System.Threading.Thread.Sleep(System.TimeSpan.FromSeconds(10));
+                        Thread.Sleep(TimeSpan.FromSeconds(10));
                 }
                 catch (Exception ex)
                 {
                     if (tried < maxTries)
-                        System.Threading.Thread.Sleep(System.TimeSpan.FromSeconds(10));
+                        Thread.Sleep(TimeSpan.FromSeconds(10));
                     Console.WriteLine(ex.Message);
                 }
             }

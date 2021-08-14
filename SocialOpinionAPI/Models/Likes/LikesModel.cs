@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Models.Likes
 {
@@ -164,6 +163,4 @@ namespace SocialOpinionAPI.Models.Likes
         public Includes includes { get; set; }
         public Meta meta { get; set; }
     }
-
-
 }

@@ -4,9 +4,7 @@ using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.TweetMetrics;
 using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Models.TweetMetrics;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.TweetMetrics
 {

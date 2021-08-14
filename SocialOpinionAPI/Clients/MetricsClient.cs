@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json;
-using SocialOpinionAPI.Core;
-using SocialOpinionAPI.DTO.TweetMetrics;
-using SocialOpinionAPI.Models.TweetMetrics;
-using System;
+﻿using SocialOpinionAPI.Core;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Clients
 {

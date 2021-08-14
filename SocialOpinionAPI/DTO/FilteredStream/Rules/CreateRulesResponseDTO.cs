@@ -1,7 +1,5 @@
-﻿using SocialOpinionAPI.DTO.FilteredStream.Rules;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.DTO.FilteredStream.Rules
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SocialOpinionAPI.Core
+﻿namespace SocialOpinionAPI.Core
 {
 	public class OAuthInfo
 	{

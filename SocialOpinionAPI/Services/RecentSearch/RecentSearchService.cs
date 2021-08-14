@@ -5,7 +5,6 @@ using SocialOpinionAPI.DTO.RecentSearch;
 using SocialOpinionAPI.Models.RecentSearch;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using AutoMapper;
 
 namespace SocialOpinionAPI.Services.RecentSearch

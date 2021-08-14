@@ -8,9 +8,7 @@ using SocialOpinionAPI.DTO.Users.Following;
 using SocialOpinionAPI.Models.Followers;
 using SocialOpinionAPI.Models.Following;
 using SocialOpinionAPI.Models.Users;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.Users
 {
@@ -150,6 +148,5 @@ namespace SocialOpinionAPI.Services.Users
 
             return models;
         }
-
     }
 }

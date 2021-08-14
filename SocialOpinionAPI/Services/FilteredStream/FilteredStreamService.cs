@@ -7,7 +7,6 @@ using SocialOpinionAPI.DTO.FilteredStream.Rules;
 using SocialOpinionAPI.Models.FilteredStream;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SocialOpinionAPI.Services.FilteredStream
 {
@@ -19,7 +18,7 @@ namespace SocialOpinionAPI.Services.FilteredStream
         public event EventHandler DataReceivedEvent;
         public class DataReceivedEventArgs : EventArgs
         {
-            public Models.FilteredStream.FilteredStreamModel FilteredStreamDataResponse { get; set; }
+            public FilteredStreamModel FilteredStreamDataResponse { get; set; }
         }
         protected void OnDataReceivedEvent(DataReceivedEventArgs dataReceivedEventArgs)
         {
@@ -94,7 +93,7 @@ namespace SocialOpinionAPI.Services.FilteredStream
         {
             // convert to dto and model
             FilteredStreamClient.TweetReceivedEventArgs eventArgs = e as FilteredStreamClient.TweetReceivedEventArgs;
-            DTO.FilteredStream.FilteredStreamDTO resultsDTO = JsonConvert.DeserializeObject<DTO.FilteredStream.FilteredStreamDTO>(eventArgs.filteredStreamDataResponse);
+            FilteredStreamDTO resultsDTO = JsonConvert.DeserializeObject<FilteredStreamDTO>(eventArgs.filteredStreamDataResponse);
             FilteredStreamModel model = _iMapper.Map<FilteredStreamDTO, FilteredStreamModel>(resultsDTO);
 
             // raise event with Model

@@ -1,6 +1,4 @@
-﻿using SocialOpinionAPI.Clients;
-using SocialOpinionAPI.Core;
-using SocialOpinionAPI.DTO.RecentSearch;
+﻿using SocialOpinionAPI.Core;
 using SocialOpinionAPI.Models.Blocks;
 using SocialOpinionAPI.Models.FilteredStream;
 using SocialOpinionAPI.Models.Followers;
@@ -13,7 +11,6 @@ using SocialOpinionAPI.Models.Timeline;
 using SocialOpinionAPI.Models.TweetMetrics;
 using SocialOpinionAPI.Models.Tweets;
 using SocialOpinionAPI.Models.Users;
-using SocialOpinionAPI.Services;
 using SocialOpinionAPI.Services.Blocks;
 using SocialOpinionAPI.Services.FilteredStream;
 using SocialOpinionAPI.Services.HideReply;
