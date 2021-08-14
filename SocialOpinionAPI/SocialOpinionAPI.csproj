@@ -2,13 +2,11 @@
 
   <PropertyGroup>
   <TargetFramework>netcoreapp3.1</TargetFramework>
-	<PackageId>SocialOpinionAPI</PackageId>
 	<Version>2.0.12</Version>
 	<Authors>Jamie Maguire</Authors>
 	<Company>Social Opinion</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageIcon>icon.jpg</PackageIcon>
-	<PackageIconUrl />
 	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the new Twitter API (v2).
 
 (https://developer.twitter.com/en/docs/api-reference-index#twitter-api-v2)</Description>
