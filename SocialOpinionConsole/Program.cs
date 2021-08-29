@@ -9,6 +9,7 @@ using SocialOpinionAPI.Models.HideReplies;
 using SocialOpinionAPI.Models.Likes;
 using SocialOpinionAPI.Models.RecentSearch;
 using SocialOpinionAPI.Models.SampledStream;
+using SocialOpinionAPI.Models.Spaces;
 using SocialOpinionAPI.Models.Timeline;
 using SocialOpinionAPI.Models.TweetMetrics;
 using SocialOpinionAPI.Models.Tweets;
@@ -22,6 +23,7 @@ using SocialOpinionAPI.Services.Mutes;
 using SocialOpinionAPI.Services.RecentSearch;
 using SocialOpinionAPI.Services.Retweets;
 using SocialOpinionAPI.Services.SampledStream;
+using SocialOpinionAPI.Services.Spaces;
 using SocialOpinionAPI.Services.Timeline;
 using SocialOpinionAPI.Services.Tweet;
 using SocialOpinionAPI.Services.TweetMetrics;
@@ -48,6 +50,25 @@ namespace SocialOpinionConsole
                 ConsumerSecret = _ConsumerSecret,
                 ConsumerKey = _ConsumerKey
             };
+
+            // Spaces API integration
+            SpacesService spacesService = new SpacesService(oAuthInfo);
+
+            // search
+            SpacesModel results = spacesService.Search("AI", SpacesService.State.scheduled, 10);
+
+            // lookup
+            SpaceModel space = spacesService.Lookup("1rmGPzoqAqVxN");
+
+            // lookup Spaces by Ids
+            List<string> spaceIds = new List<string> { "1rmGPzoqAqVxN", "1zqJVXYLmwPKB" };
+            SpacesModel spaces = spacesService.Lookup(spaceIds);
+            
+            // lookup Spaces by your favourite creators
+            List<string> creatorIds = new List<string> { "4897735439", "2244994945" };
+            SpacesModel spacesByCreators = spacesService.LookupByCreatorId(creatorIds);
+
+
 
             TimelineService timeLineService = new TimelineService(oAuthInfo, false);
 
@@ -149,7 +170,10 @@ namespace SocialOpinionConsole
             retweetService.GetWhoRetweetedTweet("1413595913331826694");
 
             bool retweeted = retweetService.RemoveRetweet("958676983", "1413595913331826694");
+
             retweeted = retweetService.Retweet("958676983", "1413595913331826694");
+
+
         }
 
         private static void StreamService_DataReceivedEvent(object sender, EventArgs e)
