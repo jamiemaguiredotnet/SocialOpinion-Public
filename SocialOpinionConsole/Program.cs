@@ -7,6 +7,7 @@ using SocialOpinionAPI.Models.Followers;
 using SocialOpinionAPI.Models.Following;
 using SocialOpinionAPI.Models.HideReplies;
 using SocialOpinionAPI.Models.Likes;
+using SocialOpinionAPI.Models.Mutes;
 using SocialOpinionAPI.Models.RecentSearch;
 using SocialOpinionAPI.Models.SampledStream;
 using SocialOpinionAPI.Models.Spaces;
@@ -50,6 +51,10 @@ namespace SocialOpinionConsole
                 ConsumerSecret = _ConsumerSecret,
                 ConsumerKey = _ConsumerKey
             };
+
+            // Mutes Model
+            MutesService muteService = new MutesService(oAuthInfo);
+            List<MutesModel> mutes = muteService.GetMutes("958676983", 100);
 
             // Spaces API integration
             SpacesService spacesService = new SpacesService(oAuthInfo);
@@ -162,8 +167,11 @@ namespace SocialOpinionConsole
             // Mutes Service
             MutesService mutesService = new MutesService(oAuthInfo);
 
+
             bool isMuting = mutesService.Mute("958676983", "34655603");
             isMuting = mutesService.UnMute("958676983", "34655603");
+
+            muteService.GetMutes("958676983", 100);
 
             // Retweet Service
             RetweetsService retweetService = new RetweetsService(oAuthInfo);
