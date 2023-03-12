@@ -52,64 +52,72 @@ namespace SocialOpinionConsole
                 ConsumerKey = _ConsumerKey
             };
 
-            // Mutes Model
-            MutesService muteService = new MutesService(oAuthInfo);
-            List<MutesModel> mutes = muteService.GetMutes("958676983", 100);
+            // Bookmarks
 
-            // Spaces API integration
-            SpacesService spacesService = new SpacesService(oAuthInfo);
+            //BookmarkClient bookmarkClient = new BookmarkClient(oAuthInfo);
 
-            // search
-            SpacesModel results = spacesService.Search("AI", SpacesService.State.scheduled, 10);
+            //bookmarkClient.GetBookmarks("38906681", "", 100, "", "", "");
 
-            // lookup
-            SpaceModel space = spacesService.Lookup("1rmGPzoqAqVxN");
+            //// Mutes Model
+            //MutesService muteService = new MutesService(oAuthInfo);
+            //List<MutesModel> mutes = muteService.GetMutes("958676983", 100);
 
-            // lookup Spaces by Ids
-            List<string> spaceIds = new List<string> { "1rmGPzoqAqVxN", "1zqJVXYLmwPKB" };
-            SpacesModel spaces = spacesService.Lookup(spaceIds);
+            //// Spaces API integration
+            //SpacesService spacesService = new SpacesService(oAuthInfo);
+
+            //// search
+            //SpacesModel results = spacesService.Search("AI", SpacesService.State.scheduled, 10);
+
+            //// lookup
+            //SpaceModel space = spacesService.Lookup("1rmGPzoqAqVxN");
+
+            //// lookup Spaces by Ids
+            //List<string> spaceIds = new List<string> { "1rmGPzoqAqVxN", "1zqJVXYLmwPKB" };
+            //SpacesModel spaces = spacesService.Lookup(spaceIds);
             
-            // lookup Spaces by your favourite creators
-            List<string> creatorIds = new List<string> { "4897735439", "2244994945" };
-            SpacesModel spacesByCreators = spacesService.LookupByCreatorId(creatorIds);
+            //// lookup Spaces by your favourite creators
+            //List<string> creatorIds = new List<string> { "4897735439", "2244994945" };
+            //SpacesModel spacesByCreators = spacesService.LookupByCreatorId(creatorIds);
 
+            //TimelineService timeLineService = new TimelineService(oAuthInfo, false);
 
+            //UserTweetTimelineModel timelineModel = timeLineService.GetUserTweetsTimeline("373097188", null, false, false, 100, null, null, null, null);
 
-            TimelineService timeLineService = new TimelineService(oAuthInfo, false);
+            //UserMentionedTimelineModel userMentionedTimeline =
+            //    timeLineService.GetUserMentionedTimeline("38906681", null, 10, null, null, null, null);
 
-            UserTweetTimelineModel timelineModel = timeLineService.GetUserTweetsTimeline("373097188", null, false, false, 100, null, null, null, null);
+            //HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
+            //HideReplyModel model = hideRepliesService.HideReply("1296341968176451585");
 
-            UserMentionedTimelineModel userMentionedTimeline =
-                timeLineService.GetUserMentionedTimeline("38906681", null, 10, null, null, null, null);
+            //// Sampled Stream Service Test
+            //SampledStreamService streamService = new SampledStreamService(oAuthInfo);
+            //streamService.DataReceivedEvent += StreamService_DataReceivedEvent;
+            //streamService.StartStream("https://api.twitter.com/2/tweets/sample/stream?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,geo.place_id,in_reply_to_user_id,referenced_tweets.id,referenced_tweets.id.author_id", 100, 5);
 
-            HideReplyService hideRepliesService = new HideReplyService(oAuthInfo);
-            HideReplyModel model = hideRepliesService.HideReply("1296341968176451585");
+            //// Recent Search 
+            //RecentSearchService searchService = new RecentSearchService(oAuthInfo);
 
-            // Sampled Stream Service Test
-            SampledStreamService streamService = new SampledStreamService(oAuthInfo);
-            streamService.DataReceivedEvent += StreamService_DataReceivedEvent;
-            streamService.StartStream("https://api.twitter.com/2/tweets/sample/stream?expansions=attachments.poll_ids,attachments.media_keys,author_id,entities.mentions.username,geo.place_id,in_reply_to_user_id,referenced_tweets.id,referenced_tweets.id.author_id", 100, 5);
-
-            // Recent Search 
-            RecentSearchService searchService = new RecentSearchService(oAuthInfo);
-
-            List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100, 3);
+            //List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100, 3);
 
             TweetService tweetsService = new TweetService(oAuthInfo);
             TweetModel tweetModel = tweetsService.GetTweet("1349116955505160200");
             // Counts Lookup
-            tweetsService.GetTweetCounts("BTC", DateTime.Now, TweetService.CountsGranularity.Hour, "", DateTime.Now.AddDays(-1), "");
+            //tweetsService.GetTweetCounts("BTC", DateTime.Now, TweetService.CountsGranularity.Hour, "", DateTime.Now.AddDays(-1), "");
 
-            Console.WriteLine(tweetModel.data.text);
-            Console.WriteLine(tweetModel.data.organic_metrics.impression_count);
-            Console.WriteLine(tweetModel.data.organic_metrics.like_count);
+            //Console.WriteLine(tweetModel.data.text);
+            //Console.WriteLine(tweetModel.data.organic_metrics.impression_count);
+            //Console.WriteLine(tweetModel.data.organic_metrics.like_count);
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            List<string> tids = new List<string>();
-            tids.Add("1293779846691270658"); // social opinion tweet
-            tids.Add("1293779846691270658"); // social opinion tweet
-            TweetsModel tweetModels = tweetsService.GetTweets(tids);
+            //List<string> tids = new List<string>();
+            //tids.Add("1293779846691270658"); // social opinion tweet
+            //tids.Add("1293779846691270658"); // social opinion tweet
+            //TweetsModel tweetModels = tweetsService.GetTweets(tids);
+
+
+            //post tweet
+            var newTweetModel = tweetsService.PostTweetV1("test");
 
             //// User(s)
             UserService userService = new UserService(oAuthInfo);
@@ -168,10 +176,10 @@ namespace SocialOpinionConsole
             MutesService mutesService = new MutesService(oAuthInfo);
 
 
-            bool isMuting = mutesService.Mute("958676983", "34655603");
-            isMuting = mutesService.UnMute("958676983", "34655603");
+            //bool isMuting = mutesService.Mute("958676983", "34655603");
+            //isMuting = mutesService.UnMute("958676983", "34655603");
 
-            muteService.GetMutes("958676983", 100);
+            //muteService.GetMutes("958676983", 100);
 
             // Retweet Service
             RetweetsService retweetService = new RetweetsService(oAuthInfo);

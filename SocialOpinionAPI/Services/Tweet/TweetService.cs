@@ -24,9 +24,9 @@ namespace SocialOpinionAPI.Services.Tweet
 
         public enum CountsGranularity
         {
-           Day,
-           Hour,
-           Minute
+            Day,
+            Hour,
+            Minute
         }
 
         public TweetService(OAuthInfo oAuth)
@@ -95,7 +95,30 @@ namespace SocialOpinionAPI.Services.Tweet
 
         }
 
-       
+        public TweetModel PostTweetV2(string tweetText)
+        {
+            TweetsClient client = new TweetsClient(_oAuthInfo);
 
+            // create the json object to send in the body
+            PostTweetDTO postTweet = new PostTweetDTO { text = tweetText };
+
+            string jsonResponse = client.PostTweet(JsonConvert.SerializeObject(postTweet));
+
+            PostTweetResponseDTO responseDTO = JsonConvert.DeserializeObject<PostTweetResponseDTO>(jsonResponse);
+
+            TweetModel tweetModel = new TweetModel {  data = new Models.Tweets.Data {  id = responseDTO.data.id, text = responseDTO.data.text} };
+
+            return tweetModel;
+        }
+
+        public TweetModel PostTweetV1(string tweetText)
+        {
+            TweetsClient client = new TweetsClient(_oAuthInfo);
+
+            string response = client.PostTweet(tweetText);
+
+            return new TweetModel { data = new Models.Tweets.Data { id = response, text = tweetText } };
+        }
     }
 }
+
