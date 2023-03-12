@@ -3,7 +3,7 @@
   <PropertyGroup>
   <TargetFramework>netcoreapp3.1</TargetFramework>
 	<PackageId>SocialOpinionAPI</PackageId>
-	<Version>2.0.13.2</Version>
+	<Version>2.0.13.3</Version>
 	<Authors>Jamie Maguire</Authors>
 	<Company>Social Opinion</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -14,8 +14,8 @@
 https://developer.twitter.com/en/docs/api-reference-index#twitter-api-v2</Description>
 	<RepositoryUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</PackageProjectUrl>
-	<AssemblyVersion>2.0.13.1</AssemblyVersion>
-	<FileVersion>2.0.13.2</FileVersion>
+	<AssemblyVersion>2.0.13.3</AssemblyVersion>
+	<FileVersion>2.0.13.3</FileVersion>
 	<PackageTags>C#, Twitter API, V2, .NET Core</PackageTags>
 	<Copyright>Social Opinion</Copyright>
 	<PackageReleaseNotes>An API written in C# tageting .NET Core makes it simple for you to use the new Twitter API v2.
