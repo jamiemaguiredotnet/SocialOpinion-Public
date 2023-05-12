@@ -1,4 +1,5 @@
 ﻿using SocialOpinionAPI.Core;
+using SocialOpinionAPI.DTO.Tweets;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,11 @@ namespace SocialOpinionAPI.Clients
     public class TweetsClient
     {
 
-        private string _tweetEndpoint = "https://api.twitter.com/2/tweets/";
+        private string _tweetEndpointV2 = "https://api.twitter.com/2/tweets/";
+        private string _tweetEndpointV1 = "https://api.twitter.com/1.1/statuses/update.json";
         private string _tweetsEndpoint = "https://api.twitter.com/2/tweets";
         private string _tweetCounts = "https://api.twitter.com/2/tweets/counts/recent";
-
+        
         private OAuthInfo _oAuthInfo;
 
         public TweetsClient(OAuthInfo oAuthInfo)
@@ -22,7 +24,7 @@ namespace SocialOpinionAPI.Clients
         public string GetTweet(string id, string expansions, string tweet_fields, string media_fields,
                                string poll_fields, string place_fields, string user_fields)
         {
-            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _tweetEndpoint + id);
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _tweetEndpointV2 + id);
 
             rb.AddParameter("expansions", expansions);
             rb.AddParameter("tweet.fields", tweet_fields);
@@ -78,6 +80,15 @@ namespace SocialOpinionAPI.Clients
             {
                 rb.AddParameter("until_id", until_id);
             }
+
+            return rb.Execute();
+        }
+
+        public string PostTweet(string text)
+        {
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "POST", _tweetEndpointV1);
+
+            rb.AddParameter("status", text);
 
             return rb.Execute();
         }
