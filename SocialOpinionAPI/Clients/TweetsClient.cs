@@ -1,6 +1,7 @@
 ﻿using SocialOpinionAPI.Core;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using SocialOpinionAPI.DTO.Tweets;
 
 namespace SocialOpinionAPI.Clients
 {
@@ -84,7 +85,7 @@ namespace SocialOpinionAPI.Clients
         {
             var rb = new RequestBuilder(_oAuthInfo, "POST", TweetsEndpoint);
 
-            var json = JsonConvert.SerializeObject(new { text });
+            var json = JsonConvert.SerializeObject(new PostTweetDTO { text = text });
             
             var result = rb.ExecuteJsonParamsInBody(json);
             
