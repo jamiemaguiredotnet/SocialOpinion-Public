@@ -99,10 +99,7 @@ namespace SocialOpinionAPI.Services.Tweet
         {
             TweetsClient client = new TweetsClient(_oAuthInfo);
 
-            // create the json object to send in the body
-            PostTweetDTO postTweet = new PostTweetDTO { text = tweetText };
-
-            string jsonResponse = client.PostTweet(JsonConvert.SerializeObject(postTweet));
+            string jsonResponse = client.PostTweet(tweetText);
 
             PostTweetResponseDTO responseDTO = JsonConvert.DeserializeObject<PostTweetResponseDTO>(jsonResponse);
 
@@ -111,6 +108,7 @@ namespace SocialOpinionAPI.Services.Tweet
             return tweetModel;
         }
 
+        [Obsolete("Twitter disabled API version 1.0")]
         public TweetModel PostTweetV1(string tweetText)
         {
             TweetsClient client = new TweetsClient(_oAuthInfo);
