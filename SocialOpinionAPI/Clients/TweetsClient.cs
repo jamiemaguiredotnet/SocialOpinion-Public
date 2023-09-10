@@ -1,17 +1,20 @@
 ﻿using SocialOpinionAPI.Core;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using SocialOpinionAPI.DTO.Tweets;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace SocialOpinionAPI.Clients
 {
     public class TweetsClient
     {
-        private const string TweetEndpointV2 = "https://api.twitter.com/2/tweets/";
-        private const string TweetsEndpoint = "https://api.twitter.com/2/tweets";
-        private const string TweetCounts = "https://api.twitter.com/2/tweets/counts/recent";
 
-        private readonly OAuthInfo _oAuthInfo;
+        private string _tweetEndpointV2 = "https://api.twitter.com/2/tweets/";
+        private string _tweetsEndpoint = "https://api.twitter.com/2/tweets";
+        private string _tweetCounts = "https://api.twitter.com/2/tweets/counts/recent";
+        
+        private OAuthInfo _oAuthInfo;
 
         public TweetsClient(OAuthInfo oAuthInfo)
         {
@@ -19,9 +22,9 @@ namespace SocialOpinionAPI.Clients
         }
 
         public string GetTweet(string id, string expansions, string tweet_fields, string media_fields,
-            string poll_fields, string place_fields, string user_fields)
+                               string poll_fields, string place_fields, string user_fields)
         {
-            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", TweetEndpointV2 + id);
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _tweetEndpointV2 + id);
 
             rb.AddParameter("expansions", expansions);
             rb.AddParameter("tweet.fields", tweet_fields);
@@ -36,7 +39,7 @@ namespace SocialOpinionAPI.Clients
         public string GetTweets(List<string> ids, string expansions, string tweet_fields, string media_fields,
                               string poll_fields, string place_fields, string user_fields)
         {
-            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", TweetsEndpoint);
+            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "GET", _tweetsEndpoint);
 
             rb.AddParameter("ids", string.Join(",", ids));
             rb.AddParameter("expansions", expansions);
@@ -50,9 +53,9 @@ namespace SocialOpinionAPI.Clients
         }
 
         public string CountsRecent(string query, string end_time, string granularity, string since_id,
-            string start_time, string until_id)
+                                   string start_time, string until_id)
         {
-            BearerTokenRequestBuilder rb = new BearerTokenRequestBuilder(_oAuthInfo, "GET", TweetCounts);
+            BearerTokenRequestBuilder rb = new BearerTokenRequestBuilder(_oAuthInfo, "GET", _tweetCounts);
 
             rb.AddParameter("query", query);
 
@@ -62,7 +65,7 @@ namespace SocialOpinionAPI.Clients
             }
 
             rb.AddParameter("granularity", granularity.ToLower());
-
+            
             if (!string.IsNullOrEmpty(since_id))
             {
                 rb.AddParameter("since_id", since_id);
@@ -83,12 +86,11 @@ namespace SocialOpinionAPI.Clients
 
         public string PostTweet(string text)
         {
-            var rb = new RequestBuilder(_oAuthInfo, "POST", TweetsEndpoint);
-
+            var rb = new RequestBuilder(_oAuthInfo, "POST", _tweetsEndpoint);
             var json = JsonConvert.SerializeObject(new PostTweetDTO { text = text });
             
             var result = rb.ExecuteJsonParamsInBody(json);
-            
+
             return result;
         }
     }
