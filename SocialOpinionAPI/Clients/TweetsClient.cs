@@ -3,6 +3,7 @@ using SocialOpinionAPI.DTO.Tweets;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace SocialOpinionAPI.Clients
 {
@@ -10,7 +11,6 @@ namespace SocialOpinionAPI.Clients
     {
 
         private string _tweetEndpointV2 = "https://api.twitter.com/2/tweets/";
-        private string _tweetEndpointV1 = "https://api.twitter.com/1.1/statuses/update.json";
         private string _tweetsEndpoint = "https://api.twitter.com/2/tweets";
         private string _tweetCounts = "https://api.twitter.com/2/tweets/counts/recent";
         
@@ -86,11 +86,12 @@ namespace SocialOpinionAPI.Clients
 
         public string PostTweet(string text)
         {
-            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "POST", _tweetEndpointV1);
+            var rb = new RequestBuilder(_oAuthInfo, "POST", _tweetsEndpoint);
+            var json = JsonConvert.SerializeObject(new PostTweetDTO { text = text });
+            
+            var result = rb.ExecuteJsonParamsInBody(json);
 
-            rb.AddParameter("status", text);
-
-            return rb.Execute();
+            return result;
         }
     }
 }

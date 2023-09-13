@@ -113,7 +113,7 @@ namespace SocialOpinionAPI.Core
             if (method == "GET")
                 return;
 
-            var requestBody = Encoding.ASCII.GetBytes(GetCustomParametersString());
+            var requestBody = Encoding.UTF8.GetBytes(GetCustomParametersString());
             using (var stream = request.GetRequestStream())
                 stream.Write(requestBody, 0, requestBody.Length);
         }
@@ -123,7 +123,7 @@ namespace SocialOpinionAPI.Core
             if (method == "GET")
                 return;
 
-            var requestBody = Encoding.ASCII.GetBytes(body);
+            var requestBody = Encoding.UTF8.GetBytes(body);
             using (var stream = request.GetRequestStream())
                 stream.Write(requestBody, 0, requestBody.Length);
         }
