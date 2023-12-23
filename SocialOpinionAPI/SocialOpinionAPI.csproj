@@ -3,20 +3,20 @@
   <PropertyGroup>
   <TargetFramework>net6.0</TargetFramework>
 	<PackageId>SocialOpinionAPI</PackageId>
-	<Version>2.0.13.4</Version>
+	<Version>2.0.13.5</Version>
 	<Authors>Jamie Maguire</Authors>
 	<Company>Social Opinion</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageIcon>icon.jpg</PackageIcon>
 	<PackageIconUrl />
-	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the new Twitter API (v2).
+	<Description>A .NET SDK written in C# that makes it easy to connect to all endpoints in the X/Twitter API (v2).
 
 https://developer.twitter.com/en/docs/api-reference-index#twitter-api-v2</Description>
 	<RepositoryUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</PackageProjectUrl>
-	<AssemblyVersion>2.0.13.4</AssemblyVersion>
-	<FileVersion>2.0.13.4</FileVersion>
-	<PackageTags>C#, Twitter API, V2, .NET Core</PackageTags>
+	<AssemblyVersion>2.0.13.5</AssemblyVersion>
+	<FileVersion>2.0.13.5</FileVersion>
+	<PackageTags>C#, X/Twitter API, V2, .NET Core</PackageTags>
 	<Copyright>Social Opinion</Copyright>
 	<PackageReleaseNotes>An API written in C# tageting .NET Core makes it simple for you to use the new Twitter API v2.
 
