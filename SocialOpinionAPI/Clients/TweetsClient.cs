@@ -5,6 +5,7 @@ using SocialOpinionAPI.DTO.Tweets;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace SocialOpinionAPI.Clients
 {
@@ -90,11 +91,12 @@ namespace SocialOpinionAPI.Clients
 
         public string PostTweet(string text)
         {
-            RequestBuilder rb = new RequestBuilder(_oAuthInfo, "POST", _tweetEndpointV1);
+            var rb = new RequestBuilder(_oAuthInfo, "POST", _tweetsEndpoint);
+            var json = JsonConvert.SerializeObject(new PostTweetDTO { text = text });
+            
+            var result = rb.ExecuteJsonParamsInBody(json);
 
-            rb.AddParameter("status", text);
-
-            return rb.Execute();
+            return result;
         }
 
         
