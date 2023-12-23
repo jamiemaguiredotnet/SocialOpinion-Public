@@ -91,7 +91,7 @@ namespace SocialOpinionAPI.Clients
 
         public string PostTweet(string text)
         {
-            var rb = new RequestBuilder(_oAuthInfo, "POST", _tweetsEndpoint);
+            var rb = new RequestBuilder(_oAuthInfo, "POST", _tweetsEndpointV2);
             var json = JsonConvert.SerializeObject(new PostTweetDTO { text = text });
             
             var result = rb.ExecuteJsonParamsInBody(json);
