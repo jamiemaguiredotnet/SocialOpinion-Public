@@ -1,4 +1,8 @@
-﻿using SocialOpinionAPI.Clients;
+﻿using Newtonsoft.Json.Linq;
+using OAuth;
+using RestSharp;
+using RestSharp.Authenticators;
+using SocialOpinionAPI.Clients;
 using SocialOpinionAPI.Core;
 using SocialOpinionAPI.DTO.RecentSearch;
 using SocialOpinionAPI.Models.Blocks;
@@ -32,12 +36,21 @@ using SocialOpinionAPI.Services.Users;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using RestSharp;
+using Newtonsoft.Json;
+using SocialOpinionAPI.DTO.Tweets;
 
 namespace SocialOpinionConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             string _ConsumerKey = ConfigurationManager.AppSettings.Get("ConsumerKey");
             string _ConsumerSecret = ConfigurationManager.AppSettings.Get("ConsumerSecret");
@@ -51,6 +64,10 @@ namespace SocialOpinionConsole
                 ConsumerSecret = _ConsumerSecret,
                 ConsumerKey = _ConsumerKey
             };
+
+      
+            TweetService tweetsService = new TweetService(oAuthInfo);
+            var newTweetModel2 = tweetsService.PostTextOnlyTweet("test 123");
 
             // Bookmarks
 
@@ -74,7 +91,7 @@ namespace SocialOpinionConsole
             //// lookup Spaces by Ids
             //List<string> spaceIds = new List<string> { "1rmGPzoqAqVxN", "1zqJVXYLmwPKB" };
             //SpacesModel spaces = spacesService.Lookup(spaceIds);
-            
+
             //// lookup Spaces by your favourite creators
             //List<string> creatorIds = new List<string> { "4897735439", "2244994945" };
             //SpacesModel spacesByCreators = spacesService.LookupByCreatorId(creatorIds);
@@ -99,8 +116,8 @@ namespace SocialOpinionConsole
 
             //List<RecentSearchResultsModel> resultsModels = searchService.SearchTweets("iphone", 100, 3);
 
-            TweetService tweetsService = new TweetService(oAuthInfo);
-            TweetModel tweetModel = tweetsService.GetTweet("1349116955505160200");
+
+            //TweetModel tweetModel = tweetsService.GetTweet("1349116955505160200");
             // Counts Lookup
             //tweetsService.GetTweetCounts("BTC", DateTime.Now, TweetService.CountsGranularity.Hour, "", DateTime.Now.AddDays(-1), "");
 
@@ -117,7 +134,23 @@ namespace SocialOpinionConsole
 
 
             //post tweet
-            var newTweetModel = tweetsService.PostTweetV1("test");
+
+            //var newTweetModel = tweetsService.PostTweetV1("test");
+
+            //TwitterAPIHelper helper = new TwitterAPIHelper(_ConsumerKey, _ConsumerSecret, _AccessToken, _AccessTokenSecret);
+            //var body = @"{
+            //    " + "\n" +
+            //  @" ""text"": ""automation-023""
+            //    " + "\n" +
+            //  @"}
+            //    " + "\n" +
+            //  @"";
+            
+            //var reply = await helper.Tweet(body);
+
+          
+
+            
 
             //// User(s)
             UserService userService = new UserService(oAuthInfo);

@@ -6,6 +6,7 @@ using SocialOpinionAPI.DTO.Tweets;
 using SocialOpinionAPI.Models.Tweets;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace SocialOpinionAPI.Services.Tweet
@@ -95,30 +96,53 @@ namespace SocialOpinionAPI.Services.Tweet
 
         }
 
-        public TweetModel PostTweetV2(string tweetText)
+        public TweetModel PostTextOnlyTweet(string tweetText)
         {
             TweetsClient client = new TweetsClient(_oAuthInfo);
 
             // create the json object to send in the body
-            PostTweetDTO postTweet = new PostTweetDTO { text = tweetText };
+            PostTextOnyTweetDTO postTweet = new PostTextOnyTweetDTO { text = tweetText };
 
-            string jsonResponse = client.PostTweet(JsonConvert.SerializeObject(postTweet));
+            string tweetToPost = JsonConvert.SerializeObject(postTweet);
+
+            string jsonResponse = client.PostTweetV2(tweetToPost);
 
             PostTweetResponseDTO responseDTO = JsonConvert.DeserializeObject<PostTweetResponseDTO>(jsonResponse);
 
-            TweetModel tweetModel = new TweetModel {  data = new Models.Tweets.Data {  id = responseDTO.data.id, text = responseDTO.data.text} };
+            TweetModel tweetModel = new TweetModel { data = new Models.Tweets.Data { id = responseDTO.data.id, text = responseDTO.data.text } };
 
             return tweetModel;
         }
 
+        [Obsolete("This method is deprecated, please use PostTextOnlyTweet when implemented.", false)]
         public TweetModel PostTweetV1(string tweetText)
         {
             TweetsClient client = new TweetsClient(_oAuthInfo);
 
-            string response = client.PostTweet(tweetText);
+            string jsonResponse = client.PostTweet(tweetText);
 
-            return new TweetModel { data = new Models.Tweets.Data { id = response, text = tweetText } };
+            DataV1 responseDataDTO = JsonConvert.DeserializeObject<DataV1>(jsonResponse);
+
+            // Twitter API v1.1 returns date/time in this format, so we need to parse it
+            var parsedCreatedDate =
+                DateTime.ParseExact(responseDataDTO.created_at, "ddd MMM dd HH:mm:ss +0000 yyyy", CultureInfo.InvariantCulture);
+
+            return new TweetModel
+            {
+                data = new Models.Tweets.Data
+                {
+                    id = responseDataDTO.id,
+                    text = responseDataDTO.text,
+                    author_id = responseDataDTO.author_id,
+                    lang = responseDataDTO.lang,
+                    possibly_sensitive = responseDataDTO.possibly_sensitive,
+                    source = responseDataDTO.source,
+                    created_at = parsedCreatedDate
+                }
+            };
         }
+
     }
 }
+
 

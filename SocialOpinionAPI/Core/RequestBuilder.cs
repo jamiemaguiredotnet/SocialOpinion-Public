@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,6 +52,10 @@ namespace SocialOpinionAPI.Core
 
             WriteRequestBody(request, postBody);
 
+            // get the raw http request object about to be sent and store for logging
+            
+            
+
             var response = request.GetResponse();
 
             string content;
@@ -66,6 +71,35 @@ namespace SocialOpinionAPI.Core
             request.Abort();
 
             return content;
+        }
+
+        public string ExecuteJsonParamsInBodyv2(string postBody)
+        {
+            var timespan = GetTimestamp();
+            var nonce = CreateNonce();
+
+            var parameters = new Dictionary<string, string>(customParameters);
+            
+            AddOAuthParameters(parameters, timespan, nonce);
+
+            var signature = GenerateSignature(parameters);
+            var headerValue = GenerateAuthorizationHeaderValue(parameters, signature);
+
+            var request = new RestSharp.RestRequest("https://api.twitter.com/2/tweets?", Method.Post)
+            {
+                RequestFormat = DataFormat.Json
+            };
+
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Authorization", headerValue);
+
+            var client = new RestClient();
+
+
+            request.AddStringBody(postBody, DataFormat.Json);
+            RestResponse response = client.Execute(request);
+
+            return response.Content;
         }
 
         public string Execute()
@@ -113,7 +147,7 @@ namespace SocialOpinionAPI.Core
             if (method == "GET")
                 return;
 
-            var requestBody = Encoding.ASCII.GetBytes(GetCustomParametersString());
+            var requestBody = Encoding.UTF8.GetBytes(GetCustomParametersString());
             using (var stream = request.GetRequestStream())
                 stream.Write(requestBody, 0, requestBody.Length);
         }
@@ -123,7 +157,7 @@ namespace SocialOpinionAPI.Core
             if (method == "GET")
                 return;
 
-            var requestBody = Encoding.ASCII.GetBytes(body);
+            var requestBody = Encoding.UTF8.GetBytes(body);
             using (var stream = request.GetRequestStream())
                 stream.Write(requestBody, 0, requestBody.Length);
         }
@@ -171,20 +205,20 @@ namespace SocialOpinionAPI.Core
 
         private void AddOAuthParameters(IDictionary<string, string> parameters, string timestamp, string nonce)
         {
-            parameters.Add("oauth_version", VERSION);
             parameters.Add("oauth_consumer_key", oauth.ConsumerKey);
             parameters.Add("oauth_nonce", nonce);
             parameters.Add("oauth_signature_method", SIGNATURE_METHOD);
             parameters.Add("oauth_timestamp", timestamp);
             parameters.Add("oauth_token", oauth.AccessToken);
+            parameters.Add("oauth_version", VERSION);
         }
 
-        private static string GetTimestamp()
+        public static string GetTimestamp()
         {
             return ((int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
         }
 
-        private static string CreateNonce()
+        public static string CreateNonce()
         {
             return new Random().Next(0x0000000, 0x7fffffff).ToString("X8");
         }

@@ -9,6 +9,9 @@
     <PackageReference Include="JsonSubTypes" Version="1.2.0" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.21" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="OAuth.DotNetCore" Version="3.0.1" />
+    <PackageReference Include="RestRequest" Version="1.2.0" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
