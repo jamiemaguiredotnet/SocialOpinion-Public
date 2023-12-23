@@ -16,7 +16,7 @@ https://developer.twitter.com/en/docs/api-reference-index#twitter-api-v2</Descri
 	<PackageProjectUrl>https://github.com/jamiemaguiredotnet/SocialOpinion-Public</PackageProjectUrl>
 	<AssemblyVersion>2.0.13.5</AssemblyVersion>
 	<FileVersion>2.0.13.5</FileVersion>
-	<PackageTags>C#, X/Twitter API, V2, .NET Core</PackageTags>
+	<PackageTags>C#, X, Twitter API, V2, .NET Core</PackageTags>
 	<Copyright>Social Opinion</Copyright>
 	<PackageReleaseNotes>An API written in C# tageting .NET Core makes it simple for you to use the new Twitter API v2.
 
@@ -28,7 +28,8 @@ Tweet lookup:
 -GET /2/tweets/counts/recent
 
 Tweet Manage
--POST api.twitter.com/1.1/statuses/ (temp method)
+-POST api.twitter.com/1.1/statuses/ (temp method, now deprecated)
+-POST api.twitter.com/2/tweets/ (NEW!!!)
 
 Recent Search
 -GET /2/tweets/search/recent
